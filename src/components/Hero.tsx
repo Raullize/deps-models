@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import GridDistortion from "./ui/GridDistortion";
+import TextType from "./ui/TextType";
 
 export default function Hero() {
   return (
@@ -28,9 +29,16 @@ export default function Hero() {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-            Transformamos ideias em experiências digitais marcantes
-          </p>
+          <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg pointer-events-auto">
+            <TextType 
+              text={["Transformamos ideias em experiências digitais marcantes", "Design, Efetividade, Produtividade e Simplicidade", "Criamos soluções que fazem a diferença"]}
+              typingSpeed={75}
+              pauseDuration={2000}
+              showCursor={true}
+              cursorCharacter="|"
+              className="text-xl md:text-2xl"
+            />
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Button 
