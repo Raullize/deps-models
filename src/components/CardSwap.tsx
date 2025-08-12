@@ -57,7 +57,7 @@ export default function CardSwap({ items }: CardSwapProps) {
             return (
               <div
                 key={item.id}
-                className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer bg-black/80 border border-gray-800 shadow-xl`}
+                className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer border border-gray-800 shadow-xl`}
                 style={{ 
                   zIndex, 
                   transform, 
