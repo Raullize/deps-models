@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import Portfolio from '@/components/Portfolio';
 import Services from '@/components/Services';
+import DepsModels from '@/components/DepsModels';
 import About from '@/components/About';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
@@ -17,6 +18,7 @@ export default function Home() {
       </BackgroundWrapper>
     
       <Services />
+      <DepsModels />
       <About />
       <FAQ />
       <Footer />
