@@ -10,7 +10,7 @@ interface ServiceCardProps {
 function ServiceCard({ title, description, icon }: ServiceCardProps) {
   return (
     <SpotlightCard 
-      className="transition-all duration-300 group"
+      className="transition-all duration-300 group bg-gray-900/80"
       spotlightColor="rgba(254, 172, 14, 0.15)"
     >
       <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center mb-4 text-gray-400 group-hover:text-[#FEAC0E] transition-colors duration-300">

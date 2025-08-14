@@ -81,7 +81,7 @@ export default function FAQ() {
           </p>
         </div>
         
-        <div className="max-w-3xl mx-auto bg-gray-900/50 rounded-xl overflow-hidden divide-y divide-gray-800">
+        <div className="max-w-3xl mx-auto bg-gray-800/80 backdrop-blur-sm rounded-xl overflow-hidden divide-y divide-gray-800">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
