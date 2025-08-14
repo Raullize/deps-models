@@ -1,4 +1,5 @@
 import CardSwap from '@/components/CardSwap';
+import LightRays from './ui/LightRays';
 
 export default function Portfolio() {
   // Dados de exemplo para o portfólio
@@ -34,28 +35,50 @@ export default function Portfolio() {
   ];
 
   return (
-    <section id="portfolio" className="py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Nosso <span className="text-[#FEAC0E]">Portfólio</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Conheça alguns dos projetos que desenvolvemos, combinando design moderno e performance excepcional.
-          </p>
-        </div>
-        
-        <CardSwap items={portfolioItems} />
-        
-        <div className="mt-16 text-center">
-          <a 
-            href="#contact" 
-            className="inline-block px-6 py-3 border border-gray-700 rounded-full text-white hover:bg-gray-800 transition-colors duration-200"
-          >
-            Ver todos os projetos
-          </a>
-        </div>
+    <div className="relative w-full">
+      {/* Background com LightRays */}
+      <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1.4}
+          lightSpread={0.4}
+          rayLength={1}
+          pulsating={false}
+          fadeDistance={1.5}
+          saturation={1.0}
+          followMouse={true}
+          mouseInfluence={0.0}
+          noiseAmount={0.05}
+          distortion={0.0}
+          className="w-full h-full"
+        />
       </div>
-    </section>
+      
+      {/* Conteúdo */}
+      <section id="portfolio" className="py-24 relative z-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Nosso <span className="text-[#FEAC0E]">Portfólio</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Conheça alguns dos projetos que desenvolvemos, combinando design moderno e performance excepcional.
+            </p>
+          </div>
+          
+          <CardSwap items={portfolioItems} />
+          
+          <div className="mt-16 text-center">
+            <a 
+              href="#contact" 
+              className="inline-block px-6 py-3 border border-gray-700 rounded-full text-white hover:bg-gray-800 transition-colors duration-200"
+            >
+              Ver todos os projetos
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
