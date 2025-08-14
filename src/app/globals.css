@@ -48,6 +48,20 @@ body {
   perspective: 1000px;
 }
 
+/* Animação marquee para movimento da direita para esquerda */
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
 /* Scrollbar personalizada */
 ::-webkit-scrollbar {
   width: 8px;
