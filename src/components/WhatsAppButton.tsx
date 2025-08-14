@@ -3,7 +3,7 @@
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function WhatsAppButton() {
-  const phoneNumber = '5511999999999'; // Substitua pelo número real
+  const phoneNumber = '5551999832724'; // Número atualizado
   const message = 'Olá! Gostaria de saber mais sobre os serviços da DEPS Models.'; // Mensagem pré-definida
   
   const handleClick = () => {

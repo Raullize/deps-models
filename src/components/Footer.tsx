@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Phone, MapPin, Github } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,10 +17,9 @@ export default function Footer() {
               Design, Efetividade, Produtividade e Simplicidade para transformar sua presença digital.
             </p>
             <div className="flex space-x-4">
-              <SocialLink href="#" icon={<Facebook size={18} />} label="Facebook" />
-              <SocialLink href="#" icon={<Instagram size={18} />} label="Instagram" />
-              <SocialLink href="#" icon={<Twitter size={18} />} label="Twitter" />
-              <SocialLink href="#" icon={<Linkedin size={18} />} label="LinkedIn" />
+              <SocialLink href="https://www.instagram.com/depsmodels/" icon={<Instagram size={18} />} label="Instagram" />
+              <SocialLink href="https://www.linkedin.com/company/depsmodels/" icon={<Linkedin size={18} />} label="LinkedIn" />
+              <SocialLink href="https://github.com/depsModels" icon={<Github size={18} />} label="GitHub" />
             </div>
           </div>
           
@@ -54,15 +53,15 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={18} className="text-[#FEAC0E] mr-2 mt-1" />
-                <span className="text-gray-400">Av. Paulista, 1000, São Paulo - SP</span>
+                <span className="text-gray-400">Rio Grande do Sul, Brasil</span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="text-[#FEAC0E] mr-2" />
-                <span className="text-gray-400">(11) 99999-9999</span>
+                <span className="text-gray-400">+55 51 9983-2724</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-[#FEAC0E] mr-2" />
-                <span className="text-gray-400">contato@depsmodels.com</span>
+                <span className="text-gray-400">depsmodels@gmail.com</span>
               </li>
             </ul>
           </div>
