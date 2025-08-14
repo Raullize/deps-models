@@ -14,7 +14,7 @@ export default function Footer() {
               <span className="text-[#FEAC0E]">DEPS</span> MODELS
             </Link>
             <p className="text-gray-400 mb-6">
-              Design, Efetividade, Produtividade e Simplicidade para transformar sua presença digital.
+              Design, Eficiência, Performance e Solução para transformar sua presença digital.
             </p>
             <div className="flex space-x-4">
               <SocialLink href="https://www.instagram.com/depsmodels/" icon={<Instagram size={18} />} label="Instagram" />

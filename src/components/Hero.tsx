@@ -31,7 +31,7 @@ export default function Hero() {
           
           <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg pointer-events-auto">
             <TextType 
-              text={["Transformamos ideias em experiências digitais marcantes", "Design, Efetividade, Produtividade e Simplicidade", "Criamos soluções que fazem a diferença"]}
+              text={["Transformamos ideias em experiências digitais marcantes", "Design, Eficiência, Performance e Solução", "Criamos soluções que fazem a diferença"]}
               typingSpeed={75}
               pauseDuration={2000}
               showCursor={true}

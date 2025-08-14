@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DEPS Models | Design, Efetividade, Produtividade, Simplicidade",
+  title: "DEPS Models | Design, Eficiência, Performance, Solução",
   description: "Agência digital especializada em design moderno e performance para landing pages, e-commerces e sistemas web.",
 };
 
