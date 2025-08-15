@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
@@ -25,8 +26,17 @@ export default function Navbar() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-xl font-bold text-white hover:text-gray-300 transition-colors">
-            <span className="text-[#FEAC0E]">DEPS</span> MODELS
+          <Link href="/" className="flex items-center space-x-2 text-xl font-bold text-white hover:text-gray-300 transition-colors">
+            <Image 
+              src="/logos/logoIcon.png" 
+              alt="DEPS Models Logo" 
+              width={32} 
+              height={32} 
+              className="w-8 h-8"
+            />
+            <span>
+              <span className="text-[#FEAC0E]">DEPS</span> MODELS
+            </span>
           </Link>
           
           {/* Links de navegação em desktop */}

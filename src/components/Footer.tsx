@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram, Linkedin, Mail, Phone, MapPin, Github } from 'lucide-react';
 
 export default function Footer() {
@@ -10,8 +11,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo e descrição */}
           <div>
-            <Link href="/" className="text-2xl font-bold text-white mb-4 inline-block">
-              <span className="text-[#FEAC0E]">DEPS</span> MODELS
+            <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-4">
+              <Image 
+                src="/logos/logoIcon.png" 
+                alt="DEPS Models Logo" 
+                width={32} 
+                height={32} 
+                className="w-8 h-8"
+              />
+              <span>
+                <span className="text-[#FEAC0E]">DEPS</span> MODELS
+              </span>
             </Link>
             <p className="text-gray-400 mb-6">
               Design, Eficiência, Performance e Solução para transformar sua presença digital.
