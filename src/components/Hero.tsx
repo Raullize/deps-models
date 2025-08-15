@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import GridDistortion from "./ui/GridDistortion";
 import TextType from "./ui/TextType";
+import GradientText from "./ui/GradientText";
 
 export default function Hero() {
   return (
@@ -22,11 +23,25 @@ export default function Hero() {
       {/* Content */}
       <div className="max-w-4xl mx-auto text-center relative z-20 pointer-events-none">
         <div className="space-y-8">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
-            DEPS
-            <span className="block text-4xl md:text-6xl lg:text-7xl font-light text-gray-200 mt-2">
-              MODELS
-            </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-2xl">
+            <GradientText 
+               colors={["#ffffff", "#d1d5db", "#9ca3af", "#d1d5db", "#ffffff"]}
+               animationSpeed={3}
+               showBorder={false}
+               className="text-5xl md:text-7xl lg:text-8xl font-bold"
+             >
+               DEPS
+             </GradientText>
+             <span className="block mt-2">
+               <GradientText 
+                 colors={["#ffffff", "#d1d5db", "#9ca3af", "#d1d5db", "#ffffff"]}
+                 animationSpeed={3}
+                 showBorder={false}
+                 className="text-4xl md:text-6xl lg:text-7xl font-light"
+               >
+                 MODELS
+               </GradientText>
+             </span>
           </h1>
           
           <div className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg pointer-events-auto">
