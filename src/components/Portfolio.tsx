@@ -1,84 +1,201 @@
-import CardSwap from '@/components/CardSwap';
-import LightRays from './ui/LightRays';
+'use client';
+import { useState } from 'react';
 
 export default function Portfolio() {
-  // Dados de exemplo para o portfólio
-  const portfolioItems = [
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Dados dos projetos que transformaram negócios
+  const projects = [
     {
       id: '1',
-      title: 'E-commerce de Moda',
-      description: 'Plataforma completa de e-commerce com foco em experiência do usuário e alta conversão.',
-      image: '/portfolio/ecommerce.jpg', // Placeholder - será substituído por imagens reais
-      tags: ['E-commerce', 'UI/UX', 'Next.js'],
+      title: 'Armazém Girassol',
+      description: 'Sistema completo de gestão para armazém com controle de estoque, vendas e relatórios em tempo real.',
+      video: '/videos/ArmazemGirassol.webm',
+      link: 'https://armazemgirassol.com', // Link opcional
+      results: [
+        { metric: '+300%', label: 'em conversões' },
+        { metric: 'R$ 2M+', label: 'em vendas geradas' }
+      ],
+      category: 'Sistema de Gestão',
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe']
     },
     {
       id: '2',
-      title: 'Landing Page Corporativa',
-      description: 'Landing page de alto impacto para empresa de tecnologia com foco em conversão.',
-      image: '/portfolio/landing.jpg', // Placeholder - será substituído por imagens reais
-      tags: ['Landing Page', 'Conversão', 'React'],
+      title: 'MyGym',
+      description: 'Aplicativo completo para gestão de academia com controle de membros, treinos e pagamentos.',
+      video: '/videos/MyGym.webm',
+      link: 'https://mygym.com', // Link opcional
+      results: [
+        { metric: '70%', label: 'redução de tempo' },
+        { metric: '95%', label: 'satisfação dos usuários' }
+      ],
+      category: 'Aplicativo Mobile',
+      technologies: ['Next.js', 'Python', 'MongoDB', 'AWS']
     },
     {
       id: '3',
-      title: 'Dashboard Analítico',
-      description: 'Interface de dashboard para visualização de dados e métricas de performance.',
-      image: '/portfolio/dashboard.jpg', // Placeholder - será substituído por imagens reais
-      tags: ['Dashboard', 'Data Viz', 'SaaS'],
-    },
-    {
-      id: '4',
-      title: 'Aplicativo de Gestão',
-      description: 'Sistema completo para gestão de processos e equipes com interface intuitiva.',
-      image: '/portfolio/app.jpg', // Placeholder - será substituído por imagens reais
-      tags: ['Web App', 'Gestão', 'Full Stack'],
-    },
+      title: 'StockDeps',
+      description: 'Sistema avançado de controle de estoque com análise preditiva e gestão automatizada de fornecedores.',
+      video: '/videos/StockDeps.webm',
+      // Sem link para demonstrar que é opcional
+      results: [
+        { metric: '450%', label: 'aumento em leads' },
+        { metric: '12%', label: 'taxa de conversão' }
+      ],
+      category: 'E-commerce',
+      technologies: ['Next.js', 'Tailwind', 'Analytics', 'SEO']
+    }
   ];
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
   return (
-    <div className="relative w-full">
-      {/* Background com LightRays */}
-      <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#ffffff"
-          raysSpeed={1.4}
-          lightSpread={0.4}
-          rayLength={1}
-          pulsating={false}
-          fadeDistance={1.5}
-          saturation={1.0}
-          followMouse={true}
-          mouseInfluence={0.0}
-          noiseAmount={0.05}
-          distortion={0.0}
-          className="w-full h-full"
-        />
-      </div>
-      
-      {/* Conteúdo */}
-      <section id="portfolio" className="py-24 relative z-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Nosso <span className="text-[#FEAC0E]">Portfólio</span>
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Conheça alguns dos projetos que desenvolvemos, combinando design moderno e performance excepcional.
-            </p>
-          </div>
-          
-          <CardSwap items={portfolioItems} />
-          
-          <div className="mt-16 text-center">
-            <a 
-              href="#contact" 
-              className="inline-block px-6 py-3 border border-gray-700 rounded-full text-white hover:bg-gray-800 transition-colors duration-200"
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+      <div className="max-w-6xl mx-auto">
+        {/* Título Principal */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Projetos que <span className="text-blue-400">transformaram</span> negócios
+          </h2>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+            Conheça alguns dos projetos que desenvolvemos e os resultados concretos que entregamos para nossos clientes.
+          </p>
+        </div>
+
+        {/* Carrossel */}
+        <div className="relative">
+          <div className="overflow-hidden rounded-2xl">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              Ver todos os projetos
-            </a>
+              {projects.map((project, index) => (
+                <div key={project.id} className="w-full flex-shrink-0">
+                  <div className="overflow-hidden">
+                    <div className="grid lg:grid-cols-2">
+                      {/* Vídeo do Projeto */}
+                      <div className="relative h-80 lg:h-96 group">
+                        <video 
+                          src={project.video} 
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover block rounded-2xl"
+                        />
+                        
+                        {/* Botão de Link no Hover (opcional) */}
+                        {project.link && (
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-all duration-200 backdrop-blur-sm border-2 border-white/30"
+                            >
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Conteúdo do Projeto */}
+                      <div className="px-8 lg:px-12 flex flex-col">
+                        {/* Etiqueta de Categoria */}
+                        <div className="inline-flex items-center mb-3">
+                          <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium border border-blue-500/30">
+                            {project.category}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        {/* Resultados */}
+                        <div className="grid grid-cols-2 gap-6 mb-8">
+                          {project.results.map((result, idx) => (
+                            <div key={idx} className="text-center">
+                              <div className="text-3xl font-bold text-blue-400 mb-2">
+                                {result.metric}
+                              </div>
+                              <div className="text-gray-400 text-sm">
+                                {result.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Tecnologias */}
+                        <div className="mb-4">
+                          <h4 className="text-gray-300 font-medium mb-3">Tecnologias:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, idx) => (
+                              <span 
+                                key={idx}
+                                className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Indicadores e Controles */}
+          <div className="flex justify-center items-center mt-8 space-x-4">
+            {/* Seta Anterior */}
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 backdrop-blur-sm"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Indicadores */}
+            <div className="flex space-x-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                    index === currentSlide ? 'bg-blue-400' : 'bg-gray-600'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Seta Próxima */}
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 backdrop-blur-sm"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
