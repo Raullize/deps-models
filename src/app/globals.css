@@ -18,7 +18,6 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Animações personalizadas */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -43,7 +42,6 @@ body {
   animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* Utilitários para perspectiva e transformações 3D */
 .perspective-1000 {
   perspective: 1000px;
 }

@@ -2,7 +2,6 @@ export default function Solutions() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        {/* Título Principal */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             A <span className="text-blue-400">DEPS Models</span> entrega soluções sob medida
@@ -12,9 +11,7 @@ export default function Solutions() {
           </p>
         </div>
 
-        {/* Grid de Soluções */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Software Personalizado */}
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-blue-400/50 transition-all duration-300">
             <div className="flex items-start space-x-4 mb-6">
               <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">

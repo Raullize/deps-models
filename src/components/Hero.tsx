@@ -6,7 +6,6 @@ import GradientText from "./ui/GradientText";
 export default function Hero() {
   return (
     <section className="min-h-screen relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* GridDistortion Background */}
       <div className="absolute inset-0 w-full h-full z-10">
         <GridDistortion 
           imageSrc="/images/bg-header.avif"
@@ -16,11 +15,9 @@ export default function Hero() {
           relaxation={0.85}
           className="w-full h-full"
         />
-        {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
       </div>
       
-      {/* Content */}
       <div className="max-w-4xl mx-auto text-center relative z-20 pointer-events-none">
         <div className="space-y-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight drop-shadow-2xl">

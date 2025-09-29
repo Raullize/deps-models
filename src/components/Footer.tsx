@@ -9,7 +9,6 @@ export default function Footer() {
     <footer id="contact" className="pt-16 pb-8 border-t border-gray-900">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Logo e descrição */}
           <div>
             <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-4">
               <Image 
@@ -33,7 +32,6 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Links rápidos */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
@@ -45,7 +43,6 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Serviços */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Serviços</h3>
             <ul className="space-y-2">
@@ -57,7 +54,6 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Contato */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Contato</h3>
             <ul className="space-y-4">
@@ -77,7 +73,6 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Linha divisória */}
         <div className="border-t border-gray-800 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">

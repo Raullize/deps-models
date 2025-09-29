@@ -2,7 +2,6 @@ export default function Problems() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        {/* Título Principal */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Seus desafios digitais estão{' '}
@@ -13,9 +12,7 @@ export default function Problems() {
           </p>
         </div>
 
-        {/* Grid de Problemas */}
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Problema 1 */}
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-red-400/50 transition-all duration-300">
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -31,7 +28,6 @@ export default function Problems() {
             </div>
           </div>
 
-          {/* Problema 2 */}
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-red-400/50 transition-all duration-300">
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -47,7 +43,6 @@ export default function Problems() {
             </div>
           </div>
 
-          {/* Problema 3 */}
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-red-400/50 transition-all duration-300">
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -63,7 +58,6 @@ export default function Problems() {
             </div>
           </div>
 
-          {/* Problema 4 */}
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-red-400/50 transition-all duration-300">
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">

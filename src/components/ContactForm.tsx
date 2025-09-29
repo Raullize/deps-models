@@ -19,14 +19,12 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode implementar a lógica de envio do formulário
     console.log('Form submitted:', formData);
   };
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        {/* Título Principal */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Vamos transformar sua <span className="text-blue-400">ideia em realidade</span>?
@@ -37,7 +35,6 @@ export default function ContactForm() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Informações de Contato */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">Entre em contato</h3>
@@ -96,7 +93,6 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Formulário */}
           <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">

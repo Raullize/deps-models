@@ -48,7 +48,6 @@ export default function About() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        {/* Título Principal */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Nosso compromisso é com sua{' '}
@@ -64,7 +63,6 @@ export default function About() {
           </p>
         </div>
 
-        {/* Estatísticas */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
@@ -78,7 +76,6 @@ export default function About() {
           ))}
         </div>
 
-        {/* Valores */}
         <div className="grid md:grid-cols-2 gap-8">
           {values.map((value, index) => (
             <div key={index} className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-blue-400/50 transition-all duration-300">

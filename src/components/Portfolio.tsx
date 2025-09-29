@@ -6,7 +6,6 @@ export default function Portfolio() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Dados dos projetos que transformaram negócios
   const projects = [
     {
       id: '1',
@@ -49,11 +48,10 @@ export default function Portfolio() {
     }
   ];
 
-  // Criar array estendido para loop infinito suave
   const extendedProjects = [
-    projects[projects.length - 1], // último item no início
+    projects[projects.length - 1],
     ...projects,
-    projects[0] // primeiro item no final
+    projects[0]
   ];
 
   const nextSlide = () => {
@@ -68,39 +66,33 @@ export default function Portfolio() {
     setCurrentSlide(prev => prev - 1);
   };
 
-  // Efeito para lidar com o loop infinito
   useEffect(() => {
     if (!isTransitioning) return;
 
     const timer = setTimeout(() => {
       if (currentSlide >= projects.length + 1) {
-        // Se chegou ao final, volta para o primeiro real (sem transição)
         setCurrentSlide(1);
         if (carouselRef.current) {
           carouselRef.current.style.transition = 'none';
           carouselRef.current.style.transform = `translateX(-${1 * 100}%)`;
-          // Força reflow para aplicar a mudança
           carouselRef.current.offsetHeight;
           carouselRef.current.style.transition = 'transform 500ms ease-in-out';
         }
       } else if (currentSlide <= 0) {
-        // Se chegou ao início, vai para o último real (sem transição)
         setCurrentSlide(projects.length);
         if (carouselRef.current) {
           carouselRef.current.style.transition = 'none';
           carouselRef.current.style.transform = `translateX(-${projects.length * 100}%)`;
-          // Força reflow para aplicar a mudança
           carouselRef.current.offsetHeight;
           carouselRef.current.style.transition = 'transform 500ms ease-in-out';
         }
       }
       setIsTransitioning(false);
-    }, 500); // Tempo da transição CSS
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [currentSlide, isTransitioning, projects.length]);
 
-  // Inicializar na posição correta (primeiro item real)
   useEffect(() => {
     setCurrentSlide(1);
   }, []);
@@ -108,7 +100,6 @@ export default function Portfolio() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        {/* Título Principal */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Projetos que <span className="text-blue-400">transformaram</span> negócios
@@ -118,7 +109,6 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Carrossel */}
         <div className="relative">
           <div className="overflow-hidden rounded-2xl">
             <div 
@@ -130,7 +120,6 @@ export default function Portfolio() {
                 <div key={`${project.id}-${index}`} className="w-full flex-shrink-0">
                   <div className="overflow-hidden">
                     <div className="grid lg:grid-cols-2">
-                      {/* Vídeo do Projeto */}
                       <div className="relative h-80 lg:h-96 group">
                         <video 
                           src={project.video} 
@@ -141,7 +130,6 @@ export default function Portfolio() {
                           className="w-full h-full object-cover block rounded-2xl"
                         />
                         
-                        {/* Botão de Link no Hover */}
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl">
                           {project.link ? (
                             <a
@@ -164,9 +152,7 @@ export default function Portfolio() {
                         </div>
                       </div>
 
-                      {/* Conteúdo do Projeto */}
                       <div className="px-8 lg:px-12 flex flex-col">
-                        {/* Etiqueta de Categoria */}
                         <div className="inline-flex items-center mb-3">
                           <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium border border-blue-500/30">
                             {project.category}
@@ -180,7 +166,6 @@ export default function Portfolio() {
                           {project.description}
                         </p>
 
-                        {/* Resultados */}
                         <div className="grid grid-cols-2 gap-6 mb-8">
                           {project.results.map((result, idx) => (
                             <div key={idx} className="bg-gray-800/30 p-4 rounded-lg border border-gray-700/50 text-center backdrop-blur-sm">
@@ -194,7 +179,6 @@ export default function Portfolio() {
                           ))}
                         </div>
 
-                        {/* Tecnologias */}
                         <div className="mb-4">
                           <h4 className="text-gray-300 font-medium mb-3">Tecnologias:</h4>
                           <div className="flex flex-wrap gap-2">
@@ -216,9 +200,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Indicadores e Controles */}
           <div className="flex justify-center items-center mt-8 space-x-4">
-            {/* Seta Anterior */}
             <button
               onClick={prevSlide}
               className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 backdrop-blur-sm cursor-pointer"
@@ -228,7 +210,6 @@ export default function Portfolio() {
               </svg>
             </button>
 
-            {/* Indicadores */}
             <div className="flex space-x-2">
               {projects.map((_, index) => (
                 <button
@@ -236,7 +217,7 @@ export default function Portfolio() {
                   onClick={() => {
                     if (isTransitioning) return;
                     setIsTransitioning(true);
-                    setCurrentSlide(index + 1); // +1 porque o primeiro item real está no índice 1
+                    setCurrentSlide(index + 1);
                   }}
                   className={`w-3 h-3 rounded-full transition-all duration-200 cursor-pointer ${
                     (currentSlide === index + 1) || 
@@ -248,7 +229,6 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* Seta Próxima */}
             <button
               onClick={nextSlide}
               className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 backdrop-blur-sm cursor-pointer"
