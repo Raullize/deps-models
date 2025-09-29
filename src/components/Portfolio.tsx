@@ -90,9 +90,9 @@ export default function Portfolio() {
                           className="w-full h-full object-cover block rounded-2xl"
                         />
                         
-                        {/* Botão de Link no Hover (opcional) */}
-                        {project.link && (
-                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl">
+                        {/* Botão de Link no Hover */}
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl">
+                          {project.link ? (
                             <a
                               href={project.link}
                               target="_blank"
@@ -103,8 +103,14 @@ export default function Portfolio() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                               </svg>
                             </a>
-                          </div>
-                        )}
+                          ) : (
+                            <div className="w-12 h-12 bg-gray-500/30 rounded-full flex items-center justify-center text-gray-400 backdrop-blur-sm border-2 border-gray-500/50 cursor-not-allowed">
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       {/* Conteúdo do Projeto */}
