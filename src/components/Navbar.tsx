@@ -7,6 +7,11 @@ import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('PT');
+
+  const toggleLanguage = () => {
+    setCurrentLanguage(prev => prev === 'PT' ? 'EN' : 'PT');
+  };
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
@@ -27,13 +32,27 @@ export default function Navbar() {
           </Link>
           
           {/* Links de navegação em desktop */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             <NavLink href="#home">Home</NavLink>
             <NavLink href="#portfolio">Portfólio</NavLink>
             <NavLink href="#services">Serviços</NavLink>
             <NavLink href="#about">Sobre Nós</NavLink>
             <NavLink href="#faq">FAQ</NavLink>
             <NavLink href="#contact">Contato</NavLink>
+            
+            {/* Seletor de Idioma */}
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
+              aria-label="Mudar idioma"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              <span className="text-sm font-medium transition-all duration-300">
+                {currentLanguage}
+              </span>
+            </button>
           </div>
           
           {/* Menu mobile */}
@@ -57,6 +76,20 @@ export default function Navbar() {
             <NavLink href="#about" onClick={() => setIsMenuOpen(false)}>Sobre Nós</NavLink>
             <NavLink href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</NavLink>
             <NavLink href="#contact" onClick={() => setIsMenuOpen(false)}>Contato</NavLink>
+            
+            {/* Seletor de Idioma Mobile */}
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
+              aria-label="Mudar idioma"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              <span className="text-sm font-medium">
+                {currentLanguage === 'PT' ? 'Português' : 'English'}
+              </span>
+            </button>
           </div>
         )}
       </div>
@@ -68,11 +101,10 @@ function NavLink({ href, children, onClick }: { href: string; children: React.Re
   return (
     <Link 
       href={href} 
-      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium relative group"
+      className="text-gray-300 hover:text-white transition-colors duration-200 font-medium p-2 rounded-lg hover:bg-white/10"
       onClick={onClick}
     >
       {children}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-200 group-hover:w-full"></span>
     </Link>
   );
 }
