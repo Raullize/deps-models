@@ -11,7 +11,7 @@ export default function Portfolio() {
       title: 'Armazém Girassol',
       description: 'Sistema completo de gestão para armazém com controle de estoque, vendas e relatórios em tempo real.',
       video: '/videos/ArmazemGirassol.webm',
-      link: 'https://armazemgirassol.com', // Link opcional
+      link: 'https://armazemgirassol.com', 
       results: [
         { metric: '+300%', label: 'em conversões' },
         { metric: 'R$ 2M+', label: 'em vendas geradas' }
@@ -24,7 +24,7 @@ export default function Portfolio() {
       title: 'MyGym',
       description: 'Aplicativo completo para gestão de academia com controle de membros, treinos e pagamentos.',
       video: '/videos/MyGym.webm',
-      link: 'https://mygym.com', // Link opcional
+      link: 'https://mygym.com',
       results: [
         { metric: '70%', label: 'redução de tempo' },
         { metric: '95%', label: 'satisfação dos usuários' }
@@ -37,7 +37,7 @@ export default function Portfolio() {
       title: 'StockDeps',
       description: 'Sistema avançado de controle de estoque com análise preditiva e gestão automatizada de fornecedores.',
       video: '/videos/StockDeps.webm',
-      // Sem link para demonstrar que é opcional
+       link: '', 
       results: [
         { metric: '450%', label: 'aumento em leads' },
         { metric: '12%', label: 'taxa de conversão' }
