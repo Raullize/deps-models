@@ -132,7 +132,7 @@ export default function Portfolio() {
                         {/* Resultados */}
                         <div className="grid grid-cols-2 gap-6 mb-8">
                           {project.results.map((result, idx) => (
-                            <div key={idx} className="text-center">
+                            <div key={idx} className="bg-gray-800/30 p-4 rounded-lg border border-gray-700/50 text-center backdrop-blur-sm">
                               <div className="text-3xl font-bold text-blue-400 mb-2">
                                 {result.metric}
                               </div>
