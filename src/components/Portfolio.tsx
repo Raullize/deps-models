@@ -1,8 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Portfolio() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Dados dos projetos que transformaram negócios
   const projects = [
@@ -47,13 +49,61 @@ export default function Portfolio() {
     }
   ];
 
+  // Criar array estendido para loop infinito suave
+  const extendedProjects = [
+    projects[projects.length - 1], // último item no início
+    ...projects,
+    projects[0] // primeiro item no final
+  ];
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % projects.length);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide(prev => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide(prev => prev - 1);
   };
+
+  // Efeito para lidar com o loop infinito
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const timer = setTimeout(() => {
+      if (currentSlide >= projects.length + 1) {
+        // Se chegou ao final, volta para o primeiro real (sem transição)
+        setCurrentSlide(1);
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = 'none';
+          carouselRef.current.style.transform = `translateX(-${1 * 100}%)`;
+          // Força reflow para aplicar a mudança
+          carouselRef.current.offsetHeight;
+          carouselRef.current.style.transition = 'transform 500ms ease-in-out';
+        }
+      } else if (currentSlide <= 0) {
+        // Se chegou ao início, vai para o último real (sem transição)
+        setCurrentSlide(projects.length);
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = 'none';
+          carouselRef.current.style.transform = `translateX(-${projects.length * 100}%)`;
+          // Força reflow para aplicar a mudança
+          carouselRef.current.offsetHeight;
+          carouselRef.current.style.transition = 'transform 500ms ease-in-out';
+        }
+      }
+      setIsTransitioning(false);
+    }, 500); // Tempo da transição CSS
+
+    return () => clearTimeout(timer);
+  }, [currentSlide, isTransitioning, projects.length]);
+
+  // Inicializar na posição correta (primeiro item real)
+  useEffect(() => {
+    setCurrentSlide(1);
+  }, []);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
@@ -72,11 +122,12 @@ export default function Portfolio() {
         <div className="relative">
           <div className="overflow-hidden rounded-2xl">
             <div 
+              ref={carouselRef}
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {projects.map((project, index) => (
-                <div key={project.id} className="w-full flex-shrink-0">
+              {extendedProjects.map((project, index) => (
+                <div key={`${project.id}-${index}`} className="w-full flex-shrink-0">
                   <div className="overflow-hidden">
                     <div className="grid lg:grid-cols-2">
                       {/* Vídeo do Projeto */}
@@ -182,9 +233,16 @@ export default function Portfolio() {
               {projects.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentSlide(index)}
+                  onClick={() => {
+                    if (isTransitioning) return;
+                    setIsTransitioning(true);
+                    setCurrentSlide(index + 1); // +1 porque o primeiro item real está no índice 1
+                  }}
                   className={`w-3 h-3 rounded-full transition-all duration-200 cursor-pointer ${
-                    index === currentSlide ? 'bg-blue-400' : 'bg-gray-600'
+                    (currentSlide === index + 1) || 
+                    (currentSlide === 0 && index === projects.length - 1) || 
+                    (currentSlide === projects.length + 1 && index === 0)
+                      ? 'bg-blue-400' : 'bg-gray-600'
                   }`}
                 />
               ))}
