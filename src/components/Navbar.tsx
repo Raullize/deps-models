@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -20,11 +20,25 @@ export default function Navbar() {
   const [hoveredLink, setHoveredLink] = useState<string>('#home');
   const [isLangDropdownOpen, setLangDropdownOpen] = useState(false);
   const languages = ['PT', 'EN', 'ES'];
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   const selectLanguage = (lang: string) => {
     setCurrentLanguage(lang);
     setLangDropdownOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
@@ -70,7 +84,7 @@ export default function Navbar() {
 
           {/* Seletor de Idioma Dropdown */}
           <div className="absolute right-0 flex items-center">
-            <div className="relative">
+            <div className="relative" ref={langDropdownRef}>
               <button
                 onClick={() => setLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
