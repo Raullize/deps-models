@@ -18,9 +18,12 @@ const navLinks = [
 export default function Navbar() {
   const [currentLanguage, setCurrentLanguage] = useState('PT');
   const [hoveredLink, setHoveredLink] = useState<string>('#home');
+  const [isLangDropdownOpen, setLangDropdownOpen] = useState(false);
+  const languages = ['PT', 'EN', 'ES'];
 
-  const toggleLanguage = () => {
-    setCurrentLanguage(prev => (prev === 'PT' ? 'EN' : 'PT'));
+  const selectLanguage = (lang: string) => {
+    setCurrentLanguage(lang);
+    setLangDropdownOpen(false);
   };
 
   return (
@@ -65,18 +68,33 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Seletor de Idioma */}
+          {/* Seletor de Idioma Dropdown */}
           <div className="absolute right-0 flex items-center">
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
-              aria-label="Mudar idioma"
-            >
-              <TbWorld className="w-5 h-5" />
-              <span className="text-sm font-medium transition-all duration-300">
-                {currentLanguage}
-              </span>
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setLangDropdownOpen(!isLangDropdownOpen)}
+                className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
+                aria-label="Mudar idioma"
+              >
+                <TbWorld className="w-5 h-5" />
+                <span className="text-sm font-medium transition-all duration-300">
+                  {currentLanguage}
+                </span>
+              </button>
+              {isLangDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-full bg-gray-800 rounded-lg shadow-lg p-1">
+                  {languages.map(lang => (
+                    <button
+                      key={lang}
+                      onClick={() => selectLanguage(lang)}
+                      className="w-full flex justify-center items-center p-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
