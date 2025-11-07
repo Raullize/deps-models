@@ -101,7 +101,7 @@ export default function Navbar() {
                     <button
                       key={lang}
                       onClick={() => selectLanguage(lang)}
-                      className="w-full flex justify-center items-center p-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
+                      className={`w-full flex justify-center items-center p-2 text-sm rounded-md ${currentLanguage === lang ? 'text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}
                     >
                       {lang}
                     </button>
