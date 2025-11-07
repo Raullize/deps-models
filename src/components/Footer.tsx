@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-4">
               <Image 
-                src="/logos/logoIcon.png" 
+                src="/logos/logo-icon-2.png" 
                 alt="DEPS Models Logo" 
                 width={32} 
                 height={32} 
