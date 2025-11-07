@@ -10,17 +10,13 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-4">
+            <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-6">
               <Image 
                 src="/logos/logo-icon-2.png" 
                 alt="DEPS Models Logo" 
-                width={32} 
-                height={32} 
-                className="w-8 h-8"
+                width={110} 
+                height={110} 
               />
-              <span>
-                <span className="text-[#FEAC0E]">DEPS</span> MODELS
-              </span>
             </Link>
             <p className="text-gray-400 mb-6">
               Design, Eficiência, Performance e Solução para transformar sua presença digital.
