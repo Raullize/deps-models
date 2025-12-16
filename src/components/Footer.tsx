@@ -32,8 +32,8 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
               <FooterLink href="#home">Home</FooterLink>
-              <FooterLink href="#portfolio">Portfólio</FooterLink>
               <FooterLink href="#services">Serviços</FooterLink>
+              <FooterLink href="#portfolio">Portfólio</FooterLink>
               <FooterLink href="#about">Sobre Nós</FooterLink>
               <FooterLink href="#faq">FAQ</FooterLink>
             </ul>
