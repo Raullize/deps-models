@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import {
   Scene,
   OrthographicCamera,
@@ -278,30 +278,37 @@ export default function FloatingLines({
   const targetParallaxRef = useRef<Vector2>(new Vector2(0, 0));
   const currentParallaxRef = useRef<Vector2>(new Vector2(0, 0));
 
-  const getLineCount = (waveType: 'top' | 'middle' | 'bottom'): number => {
-    if (typeof lineCount === 'number') return lineCount;
-    if (!enabledWaves.includes(waveType)) return 0;
-    const index = enabledWaves.indexOf(waveType);
-    return lineCount[index] ?? 6;
-  };
+  const { topLineCount, middleLineCount, bottomLineCount } = useMemo(() => {
+    const getLineCount = (waveType: 'top' | 'middle' | 'bottom'): number => {
+      if (typeof lineCount === 'number') return lineCount;
+      if (!enabledWaves.includes(waveType)) return 0;
+      const index = enabledWaves.indexOf(waveType);
+      return lineCount[index] ?? 6;
+    };
+    return {
+      topLineCount: enabledWaves.includes('top') ? getLineCount('top') : 0,
+      middleLineCount: enabledWaves.includes('middle') ? getLineCount('middle') : 0,
+      bottomLineCount: enabledWaves.includes('bottom') ? getLineCount('bottom') : 0,
+    };
+  }, [lineCount, enabledWaves]);
 
-  const getLineDistance = (waveType: 'top' | 'middle' | 'bottom'): number => {
-    if (typeof lineDistance === 'number') return lineDistance;
-    if (!enabledWaves.includes(waveType)) return 0.1;
-    const index = enabledWaves.indexOf(waveType);
-    return lineDistance[index] ?? 0.1;
-  };
-
-  const topLineCount = enabledWaves.includes('top') ? getLineCount('top') : 0;
-  const middleLineCount = enabledWaves.includes('middle') ? getLineCount('middle') : 0;
-  const bottomLineCount = enabledWaves.includes('bottom') ? getLineCount('bottom') : 0;
-
-  const topLineDistance = enabledWaves.includes('top') ? getLineDistance('top') * 0.01 : 0.01;
-  const middleLineDistance = enabledWaves.includes('middle') ? getLineDistance('middle') * 0.01 : 0.01;
-  const bottomLineDistance = enabledWaves.includes('bottom') ? getLineDistance('bottom') * 0.01 : 0.01;
+  const { topLineDistance, middleLineDistance, bottomLineDistance } = useMemo(() => {
+    const getLineDistance = (waveType: 'top' | 'middle' | 'bottom'): number => {
+      if (typeof lineDistance === 'number') return lineDistance;
+      if (!enabledWaves.includes(waveType)) return 0.1;
+      const index = enabledWaves.indexOf(waveType);
+      return lineDistance[index] ?? 0.1;
+    };
+    return {
+      topLineDistance: enabledWaves.includes('top') ? getLineDistance('top') * 0.01 : 0.01,
+      middleLineDistance: enabledWaves.includes('middle') ? getLineDistance('middle') * 0.01 : 0.01,
+      bottomLineDistance: enabledWaves.includes('bottom') ? getLineDistance('bottom') * 0.01 : 0.01,
+    };
+  }, [lineDistance, enabledWaves]);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const scene = new Scene();
 
@@ -312,7 +319,7 @@ export default function FloatingLines({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     const uniforms = {
       iTime: { value: 0 },
@@ -388,7 +395,7 @@ export default function FloatingLines({
     const clock = new Clock();
 
     const setSize = () => {
-      const el = containerRef.current!;
+      const el = container!;
       const width = el.clientWidth || 1;
       const height = el.clientHeight || 1;
 
@@ -458,7 +465,7 @@ export default function FloatingLines({
 
     return () => {
       cancelAnimationFrame(raf);
-      if (ro && containerRef.current) {
+      if (ro && container) {
         ro.disconnect();
       }
 
@@ -477,8 +484,6 @@ export default function FloatingLines({
   }, [
     linesGradient,
     enabledWaves,
-    lineCount,
-    lineDistance,
     topWavePosition,
     middleWavePosition,
     bottomWavePosition,
@@ -488,7 +493,13 @@ export default function FloatingLines({
     bendStrength,
     mouseDamping,
     parallax,
-    parallaxStrength
+    parallaxStrength,
+    topLineCount,
+    middleLineCount,
+    bottomLineCount,
+    topLineDistance,
+    middleLineDistance,
+    bottomLineDistance
   ]);
 
   return (
