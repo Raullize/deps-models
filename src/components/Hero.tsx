@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full z-10">
         <FloatingLines 
           enabledWaves={['top', 'middle', 'bottom']} 
-          lineCount={[10, 15, 20]} 
+          lineCount={[4, 4, 4]} 
           lineDistance={[8, 6, 4]} 
           bendRadius={5.0} 
           bendStrength={-0.5} 
