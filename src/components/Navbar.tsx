@@ -16,6 +16,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('PT');
   const [hoveredLink, setHoveredLink] = useState<string>('#home');
   const [isLangDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -26,6 +27,17 @@ export default function Navbar() {
     setCurrentLanguage(lang);
     setLangDropdownOpen(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -41,7 +53,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md' : ''}`}>
       <div className="container mx-auto px-6">
         <div className="relative flex items-center justify-center h-24">
           {/* Logo */}
