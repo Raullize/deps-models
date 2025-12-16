@@ -8,8 +8,8 @@ import { TbWorld } from 'react-icons/tb';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
-  { href: '#portfolio', label: 'Portfólio' },
   { href: '#services', label: 'Serviços' },
+  { href: '#portfolio', label: 'Portfólio' },
   { href: '#about', label: 'Sobre Nós' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contato' },
