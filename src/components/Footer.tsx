@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="pt-16 pb-8 border-t border-gray-900">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-white mb-6">
