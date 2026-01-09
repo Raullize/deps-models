@@ -10,41 +10,42 @@ export default function Portfolio() {
     {
       id: '1',
       title: 'Armazém Girassol',
-      description: 'Sistema completo de gestão para armazém com controle de estoque, vendas e relatórios em tempo real.',
+      description: 'Ecommerce de produtos naturais integrado com controle de estoque, vendas e relatórios em tempo real.',
       video: '/videos/ArmazemGirassol.webm',
       link: 'https://armazemgirassol.com', 
       results: [
         { metric: '+300%', label: 'em conversões' },
         { metric: 'R$ 2M+', label: 'em vendas geradas' }
       ],
-      category: 'Sistema de Gestão',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe']
+      category: 'Ecommerce',
+      technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'SEO']
     },
     {
       id: '2',
       title: 'MyGym',
-      description: 'Aplicativo completo para gestão de academia com controle de membros, treinos e pagamentos.',
+      description: 'Landing page para academia com formulário de inscrição e informações sobre planos.',
       video: '/videos/MyGym.webm',
       link: 'https://mygym.com',
       results: [
-        { metric: '70%', label: 'redução de tempo' },
-        { metric: '95%', label: 'satisfação dos usuários' }
+        { metric: '+100%', label: 'em leads gerados' },
+        { metric: '+200%', label: 'em conversões' }
       ],
-      category: 'Aplicativo Mobile',
-      technologies: ['Next.js', 'Python', 'MongoDB', 'AWS']
+      category: 'Landing Page',
+      technologies: ['Next.js', 'Tailwind', 'Node.js', 'SEO']
     },
     {
       id: '3',
-      title: 'StockDeps',
-      description: 'Sistema avançado de controle de estoque com análise preditiva e gestão automatizada de fornecedores.',
+      title: 'Sistema de Gestão Corporativa',
+      description: 'Solução de gestão para consultoria de TI: centraliza operações, automatiza o financeiro e gera documentos. Foco em regras complexas, segurança e eficiência administrativa.',
+      // Atualizar video da proki
       video: '/videos/StockDeps.webm',
        link: '', 
       results: [
-        { metric: '450%', label: 'aumento em leads' },
-        { metric: '12%', label: 'taxa de conversão' }
+        { metric: '+400%', label: 'em vendas geradas' },
+        { metric: 'R$ 2M+', label: 'em vendas geradas' }
       ],
-      category: 'E-commerce',
-      technologies: ['Next.js', 'Tailwind', 'Analytics', 'SEO']
+      category: 'Sistema de Gestão',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind', 'PostgreSQL']
     }
   ];
 
