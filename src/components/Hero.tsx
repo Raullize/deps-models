@@ -38,10 +38,18 @@ export default function Hero() {
           Criamos soluções web de alta performance que unem design, eficiência e tecnologia para impulsionar o seu negócio.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#services" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center">
-            Ver Serviços
+          <a 
+            href="#services" 
+            className="group relative w-full sm:w-auto overflow-hidden bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] flex items-center justify-center"
+          >
+            <span className="relative z-10">Ver Serviços</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
-          <a href="#contact" className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center">
+          
+          <a 
+            href="#contact" 
+            className="w-full sm:w-auto bg-white/5 border border-white/10 backdrop-blur-sm text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105 flex items-center justify-center"
+          >
             Pedir Orçamento
           </a>
         </div>
