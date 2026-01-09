@@ -1,4 +1,5 @@
 import FloatingLines from './ui/FloatingLines';
+import TextType from './ui/TextType';
 
 export default function Hero() {
   return (
@@ -21,7 +22,17 @@ export default function Hero() {
       <div className="max-w-4xl mx-auto text-center relative z-20">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
           Transformamos Ideias em
-          <span className="text-blue-400 block md:inline-block">Experiências Digitais</span>
+          <div className="text-white-400 block md:inline-block min-h-[1.5em] md:ml-3">
+            <TextType
+              text={['Experiências Digitais', 'Soluções Inovadoras', 'Resultados Reais']}
+              typingSpeed={100}
+              deletingSpeed={50}
+              pauseDuration={2000}
+              loop={true}
+              cursorCharacter="_"
+              showCursor={true}
+            />
+          </div>
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
           Criamos soluções web de alta performance que unem design, eficiência e tecnologia para impulsionar o seu negócio.
