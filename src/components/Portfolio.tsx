@@ -25,7 +25,7 @@ export default function Portfolio() {
       title: 'MyGym',
       description: 'Landing page para academia com formulário de inscrição e informações sobre planos.',
       video: '/videos/MyGym.webm',
-      link: 'https://mygym.com',
+      link: 'https://my-gym-academy.vercel.app/',
       results: [
         { metric: '+100%', label: 'em leads gerados' },
         { metric: '+200%', label: 'em conversões' }
