@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, MotionValue, useMotionValue } from 'framer-motion';
-import { Eye, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 
 // Mock dos projetos baseados no conteúdo original mas expandidos para o design High-End
 const projects = [
@@ -159,11 +160,12 @@ function ProjectCard({ project, i, progress, range, targetScale }: {
         
         <div className="absolute inset-0 z-0">
           {/* Removido o filtro de blur da imagem que causava gargalo na GPU */}
-          <img 
+          <Image 
             src={project.image}
             alt={`${project.title} Cover`}
-            loading="lazy" // Otimização 4: Lazy load das imagens de fundo
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            fill
+            sizes="100vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-colors duration-700" />
           <div className={`absolute inset-0 bg-gradient-to-br ${project.theme} opacity-10 group-hover:opacity-20 transition-opacity duration-700`} />
@@ -191,13 +193,16 @@ function ProjectCard({ project, i, progress, range, targetScale }: {
               </div>
             </div>
             
-            {/* Otimização 5: Substituição do Vídeo por Imagem Estática */}
-            <img 
-              src={project.image}
-              alt={`${project.title} Mockup`}
-              loading="lazy"
-              className="absolute top-6 sm:top-8 left-0 w-full h-[calc(100%-24px)] sm:h-[calc(100%-32px)] object-cover object-top"
-            />
+            {/* Otimização 5: Substituição do Vídeo por Imagem Estática com Next Image */}
+            <div className="absolute top-6 sm:top-8 left-0 w-full h-[calc(100%-24px)] sm:h-[calc(100%-32px)]">
+              <Image 
+                src={project.image}
+                alt={`${project.title} Mockup`}
+                fill
+                sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1000px"
+                className="object-cover object-top"
+              />
+            </div>
           </div>
         </div>
 

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, Linkedin, Mail, Github, ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Instagram, Linkedin, Github, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

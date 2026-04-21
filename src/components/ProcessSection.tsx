@@ -80,7 +80,7 @@ export default function ProcessSection() {
         {/* Mobile: Vertical List (Fallback) */}
         <div className="md:hidden flex flex-col gap-16 px-4 w-full max-w-7xl mx-auto relative z-10 mt-12">
           {steps.map((step, index) => (
-            <MobileProcessCard key={index} step={step} index={index} />
+            <MobileProcessCard key={index} step={step} />
           ))}
         </div>
 
@@ -290,7 +290,7 @@ function AbstractVisual({ stepNumber }: { stepNumber: string }) {
             <p><span className="text-purple-400">const</span> buildSystem = <span className="text-blue-400">async</span> () ={">"} {"{"}</p>
             <p className="pl-4"><span className="text-purple-400">await</span> optimizePerformance();</p>
             <p className="pl-4"><span className="text-purple-400">await</span> deployArchitecture();</p>
-            <p className="pl-4">return <span className="text-green-400">"100% Scalable"</span>;</p>
+            <p className="pl-4">return <span className="text-green-400">&quot;100% Scalable&quot;</span>;</p>
             <p>{"}"}</p>
             <div className="mt-4 w-1/2 h-[1px] bg-gradient-to-r from-[#2563eb] to-transparent" />
             <p className="animate-pulse mt-2 text-white/50">{">"} compiling assets...</p>
@@ -332,7 +332,7 @@ function AbstractVisual({ stepNumber }: { stepNumber: string }) {
   }
 }
 
-function MobileProcessCard({ step, index }: { step: typeof steps[0], index: number }) {
+function MobileProcessCard({ step }: { step: typeof steps[0] }) {
   return (
     <div className="relative flex flex-col pl-12">
       {/* Vertical Line */}
