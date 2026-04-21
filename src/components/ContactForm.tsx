@@ -8,8 +8,8 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
-    budget: '',
     message: ''
   });
 
@@ -48,11 +48,11 @@ export default function ContactForm() {
 
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
               Pronto para <br />
-              <span className="text-[#2563eb] italic font-serif">escalar?</span>
+              <span className="text-[#2563eb] italic font-serif">organizar a casa?</span>
             </h2>
             
             <p className="text-xl text-zinc-400 font-light leading-relaxed mb-16 max-w-lg">
-              Nossa agenda para novos projetos é limitada. Preencha o formulário para agendarmos uma reunião de alinhamento estratégico.
+              Pare de perder dinheiro com processos manuais. Fale com a gente agora pelo WhatsApp ou preencha o formulário abaixo.
             </p>
 
             {/* Direct Contacts */}
@@ -119,18 +119,15 @@ export default function ContactForm() {
 
               {/* Input Group */}
               <div className="relative group">
-                <select
-                  name="budget"
-                  id="budget"
-                  value={formData.budget}
+                <input 
+                  type="text" 
+                  name="company"
+                  id="company"
+                  placeholder="Empresa / Projeto"
+                  value={formData.company}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-zinc-400 focus:outline-none focus:border-[#2563eb] transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="" disabled className="bg-[#121212]">Orçamento estimado</option>
-                  <option value="10k-20k" className="bg-[#121212]">R$ 10.000 - R$ 20.000</option>
-                  <option value="20k-50k" className="bg-[#121212]">R$ 20.000 - R$ 50.000</option>
-                  <option value="50k+" className="bg-[#121212]">Mais de R$ 50.000</option>
-                </select>
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
+                />
               </div>
 
               {/* Input Group */}
@@ -139,12 +136,18 @@ export default function ContactForm() {
                   name="message"
                   id="message"
                   required
-                  rows={3}
-                  placeholder="Conte-nos um pouco sobre o seu projeto..."
+                  rows={1}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors resize-none peer"
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:outline-none focus:border-[#2563eb] transition-colors resize-none peer min-h-[60px]"
+                  placeholder=" "
                 />
+                <label 
+                  htmlFor="message" 
+                  className="absolute left-0 top-4 text-zinc-600 text-xl cursor-text transition-all peer-focus:-top-4 peer-focus:text-sm peer-focus:text-[#2563eb] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-sm"
+                >
+                  Conte-nos um pouco sobre o seu projeto...
+                </label>
               </div>
 
               {/* Submit Button */}

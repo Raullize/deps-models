@@ -6,23 +6,23 @@ import { motion } from "framer-motion";
 export default function About() {
   const values = [
     {
-      title: 'Foco Absoluto no Resultado',
-      description: 'Não fazemos sites por fazer. Cada linha de código e pixel desenhado tem um objetivo métrico: aumentar sua conversão e elevar o ticket médio do seu negócio.',
-      icon: <Target className="w-8 h-8 text-[#2563eb]" />
-    },
-    {
-      title: 'Atendimento Boutique',
-      description: 'Você não é apenas mais um número em uma esteira de produção. Trabalhamos com um volume seleto de projetos para garantir dedicação extrema a cada cliente.',
+      title: 'Suporte Direto com Dono',
+      description: 'Sem chamados demorados ou estagiários no suporte. Você tem o WhatsApp de quem construiu o seu sistema para resolver qualquer coisa.',
       icon: <Users className="w-8 h-8 text-[#2563eb]" />
     },
     {
-      title: 'Excelência Técnica',
-      description: 'Utilizamos as mesmas tecnologias que sustentam gigantes do Vale do Silício. Performance ultrarrápida, SEO técnico impecável e arquitetura que não trava.',
+      title: 'Seu Sistema, Suas Regras',
+      description: 'Chega de engessar sua operação num software de prateleira. Desenvolvemos algo que respeita o jeito como você gosta de trabalhar.',
+      icon: <Target className="w-8 h-8 text-[#2563eb]" />
+    },
+    {
+      title: 'Nunca Mais Perca Vendas',
+      description: 'Sistemas que carregam rápido e nunca saem do ar, para que a sua equipe foque no que importa: vender mais e atender bem.',
       icon: <Zap className="w-8 h-8 text-[#2563eb]" />
     },
     {
-      title: 'Segurança e Confiança',
-      description: 'Desenvolvemos ecossistemas digitais blindados. Da proteção de dados do seu cliente até a estabilidade do seu servidor nos dias de pico de tráfego.',
+      title: 'Menos Custo, Mais Lucro',
+      description: 'Reduza a folha de pagamento eliminando trabalho braçal. A tecnologia que implementamos se paga sozinha nos primeiros meses.',
       icon: <ShieldCheck className="w-8 h-8 text-[#2563eb]" />
     }
   ];
@@ -44,17 +44,19 @@ export default function About() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
             <div className="w-2 h-2 rounded-full bg-[#2563eb]" />
-            <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Sobre a DEPS</span>
+            <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">QUEM SOMOS</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-            Não somos uma fábrica de sites. <br className="hidden md:block" />
-            Somos uma <span className="text-[#2563eb] italic font-serif pr-2">boutique</span> de tecnologia.
+            Nós entendemos a dor <br className="hidden md:block" />
+            do <span className="text-[#2563eb] italic font-serif pr-2">Empresário.</span>
           </h2>
           
-          <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
-            A DEPS Models nasceu da urgência de entregar soluções digitais que não sejam apenas "mais um template na internet". 
-            Nós acreditamos que a sua presença digital deve ser a sua ferramenta de vendas mais agressiva e o seu maior ativo de marca.
+          <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed mb-6">
+            A DEPS nasceu porque percebemos que empresas estão <strong className="text-white font-medium">perdendo muito dinheiro usando planilhas lentas ou sistemas de prateleira que não funcionam direito.</strong>
+          </p>
+          <p className="text-zinc-500 text-lg leading-relaxed">
+            Nós ajudamos empresas como a sua a organizar o estoque, automatizar vendas e parar de perder tempo com retrabalho. Você fala direto com a gente. Sem intermediários, sem termos técnicos complicados.
           </p>
         </motion.div>
 

@@ -5,20 +5,20 @@ import { motion } from "framer-motion";
 export default function Problems() {
   const problems = [
     {
-      title: "Design Obsoleto",
-      description: "Seu site parece ter parado no tempo, afastando clientes que buscam inovação e confiança.",
+      title: "Planilhas que Travam",
+      description: "Você perde horas cruzando dados enquanto poderia estar focando no crescimento do negócio. Suas planilhas travam quando você mais precisa.",
     },
     {
-      title: "Baixa Conversão",
-      description: "Muito tráfego, poucas vendas. O usuário se perde em interfaces confusas e desiste da compra.",
+      title: "Trabalho Dobrado",
+      description: "Sua equipe perde vendas ou irrita clientes porque precisa digitar a mesma informação em três lugares diferentes.",
     },
     {
-      title: "Performance Lenta",
-      description: "Cada segundo de carregamento custa dinheiro. Sistemas pesados que não acompanham o seu crescimento.",
+      title: "Sistemas Engessados",
+      description: "Softwares de prateleira caros que não entendem o seu processo e fazem sua equipe trabalhar para o sistema, e não o contrário.",
     },
     {
-      title: "Falta de Estratégia",
-      description: "Soluções genéricas de gaveta que não refletem o verdadeiro valor e o posicionamento da sua marca.",
+      title: "Clientes Escapando",
+      description: "Você investe para trazer o cliente, mas o site lento ou confuso faz ele fechar a aba e ir para o concorrente no WhatsApp.",
     }
   ];
 
@@ -41,14 +41,14 @@ export default function Problems() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight mb-8">
-              Seu digital está <br />
+              A falta de <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
-                sangrando
+                tecnologia
               </span> <br />
-              o seu negócio?
+              está custando caro?
             </h2>
             <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-xl">
-              Sabemos como é frustrante quando a tecnologia se torna um obstáculo ao invés do principal motor de crescimento da sua empresa.
+              Sabemos como é frustrante perder um cliente grande porque não conseguiu emitir um orçamento rápido ou não encontrou a informação no estoque.
             </p>
           </motion.div>
 

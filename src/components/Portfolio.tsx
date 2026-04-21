@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, MotionValue, useMotionValue } from 'framer-motion';
 import { Eye, ArrowUpRight } from 'lucide-react';
 
 // Mock dos projetos baseados no conteúdo original mas expandidos para o design High-End
@@ -11,6 +11,7 @@ const projects = [
     title: 'Armazém Girassol',
     category: 'Ecommerce High-End',
     description: 'Plataforma robusta de produtos naturais integrada com controle de estoque, vendas e relatórios analíticos em tempo real.',
+    image: '/images/ArmazemGirassol-cover.jpg', // Coloque a imagem na pasta public/images/
     video: '/videos/ArmazemGirassol.webm',
     link: 'https://armazemgirassol.com',
     results: [
@@ -25,6 +26,7 @@ const projects = [
     title: 'MyGym Academy',
     category: 'Landing Page de Conversão',
     description: 'Experiência digital imersiva projetada para capturar leads e converter visitantes em alunos através de uma interface persuasiva.',
+    image: '/images/MyGym-cover.jpg', // Coloque a imagem na pasta public/images/
     video: '/videos/MyGym.webm',
     link: 'https://my-gym-academy.vercel.app/',
     results: [
@@ -39,6 +41,7 @@ const projects = [
     title: 'Deps ERP',
     category: 'Sistema de Gestão SaaS',
     description: 'Solução corporativa para centralizar operações, automatizar o financeiro e gerar relatórios complexos com segurança de nível bancário.',
+    image: '/images/DepsERP-cover.jpg', // Coloque a imagem na pasta public/images/
     video: '/videos/StockDeps.webm',
     link: '#',
     results: [
@@ -59,22 +62,20 @@ export default function Portfolio() {
   });
 
   return (
-    <section ref={containerRef} className="relative bg-[#0a0a0a] pb-32">
+    <section id="portfolio" ref={containerRef} className="relative bg-[#0a0a0a] pt-16 pb-0">
       {/* Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.05)_0%,transparent_50%)] pointer-events-none" />
       
-      {/* Sticky Header - Fica no topo da tela enquanto o usuário rola a seção inteira */}
-      <div className="sticky top-0 w-full z-50 pt-8 md:pt-12 px-4 md:px-12 pointer-events-none h-0">
-        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight pointer-events-auto bg-[#0a0a0a]/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none inline-block p-2 md:p-0 rounded-lg">
+      {/* Header Estático da Seção */}
+      <div className="w-full px-4 md:px-12 pointer-events-none mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
           NOSSOS <span className="text-[#2563eb] drop-shadow-[0_0_15px_rgba(37,99,235,0.8)]">PROJETOS</span>
         </h2>
       </div>
 
-      {/* O container principal que cria o espaço para o scroll (altura = N * 100vh) */}
-      <div className="relative w-full pt-[10vh]">
+      <div className="relative">
         {projects.map((project, i) => {
-          // Increase scaling down effect for much better 3D depth perception
-          const targetScale = 1 - ((projects.length - i) * 0.1);
+          const targetScale = 1 - (projects.length - i) * 0.1;
           return (
             <ProjectCard 
               key={project.id} 
@@ -99,123 +100,118 @@ function ProjectCard({ project, i, progress, range, targetScale }: {
   targetScale: number 
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   
-  // Conforme a página rola além desse card, ele diminui e perde opacidade
-  // We make it much smaller in the back (targetScale) and keep more opacity so it's visible
-  const scale = useTransform(progress, range, [1, targetScale]);
-  const opacity = useTransform(progress, range, [1, 0.7]);
-  // Remove blur completely or make it almost invisible so the background items are sharp
-  const blur = useTransform(progress, range, ["blur(0px)", "blur(1px)"]);
+  // Otimização 1: Rastrear mouse SEM re-renderizar o React inteiro
+  // Usando useMotionValue do Framer Motion, que é ultra-rápido e direto na GPU
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Posição top escalonada para que as cartas fiquem visíveis como um baralho/abas
-  const topOffset = `calc(5vh + ${i * 60}px)`;
+  const handleMouseMove = (e: React.MouseEvent) => {
+    // Atualiza os valores diretamente sem causar re-renderização do React
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
+
+  const scale = useTransform(progress, range, [1, targetScale]);
+  
+  // Simplificado o overlay de escurecimento
+  const overlayOpacity = useTransform(progress, range, [0, 0.4]);
+
+  const topOffset = `5vh`;
+  const isLast = i === projects.length - 1;
+  const shadowClass = isLast ? 'shadow-none' : 'shadow-[0_-30px_40px_-20px_rgba(0,0,0,0.8)]'; // Sombra reduzida
 
   return (
-    <div ref={containerRef} className="h-[120vh] sticky flex items-start justify-center top-0 pt-24">
-      <motion.div 
-        style={{ scale, opacity, filter: blur, top: topOffset }}
-        className="relative w-full max-w-[1400px] h-[75vh] md:h-[80vh] bg-[#0a0a0a] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_-30px_60px_-20px_rgba(0,0,0,0.9)] mx-4 md:mx-auto origin-top group cursor-pointer"
+    <div 
+      ref={containerRef} 
+      className={`${isLast ? 'h-[100vh]' : 'h-[120vh]'} sticky flex items-start justify-center top-0 pt-4`}
+    >
+      {/* Otimização 3: Cursor magnético sem mix-blend-difference e com aceleração de hardware */}
+      <motion.div
+        className="fixed top-0 left-0 w-24 h-24 rounded-full bg-[#2563eb] pointer-events-none z-[100] items-center justify-center hidden md:flex"
+        style={{
+          x: useTransform(mouseX, x => x - 48),
+          y: useTransform(mouseY, y => y - 48),
+          willChange: "transform",
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          scale: isHovered ? 1 : 0,
+          opacity: isHovered ? 0.9 : 0,
+        }}
+        transition={{ type: "tween", duration: 0.15 }}
       >
-        {/* Background Cover (Video) */}
+        <span className="text-white text-xs font-bold tracking-widest uppercase">View</span>
+      </motion.div>
+
+      <motion.div 
+        style={{ scale, top: topOffset, willChange: "transform" }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`relative w-full max-w-[1400px] h-[75vh] md:h-[80vh] min-h-[500px] bg-[#0a0a0a] rounded-[2rem] md:rounded-[3rem] overflow-hidden ${shadowClass} mx-4 md:mx-auto origin-top group z-10 cursor-none`}
+      >
+        <motion.div 
+          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-black z-50 pointer-events-none"
+        />
+        
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105 group-hover:blur-[20px]"
-          >
-            <source src={project.video} type="video/webm" />
-            <source src={project.video.replace('.webm', '.mp4')} type="video/mp4" />
-          </video>
-          {/* Overlay Escurecedor */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:bg-black/60 transition-colors duration-1000" />
-          {/* Brilho da cor do projeto */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.theme} opacity-30 group-hover:opacity-50 transition-opacity duration-1000 mix-blend-overlay`} />
+          {/* Removido o filtro de blur da imagem que causava gargalo na GPU */}
+          <img 
+            src={project.image}
+            alt={`${project.title} Cover`}
+            loading="lazy" // Otimização 4: Lazy load das imagens de fundo
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-colors duration-700" />
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.theme} opacity-10 group-hover:opacity-20 transition-opacity duration-700`} />
         </div>
 
-        {/* Default View (Title Centered & Mockup Peeking) */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-          <h3 className="text-6xl md:text-8xl lg:text-[10rem] font-bold text-white tracking-tighter drop-shadow-2xl text-center px-4 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-0 group-hover:-translate-y-16">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none transition-all duration-700 ease-out group-hover:opacity-0 group-hover:-translate-y-8">
+          <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[7rem] font-bold text-white tracking-tighter drop-shadow-2xl text-center px-4 leading-tight">
             {project.title}
           </h3>
+          
+          <div className="mt-4 sm:mt-8 flex items-center gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium tracking-wide">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-ping" />
+            Passe o mouse para ver o projeto
+          </div>
         </div>
 
-        {/* Hover View (Mockup in Center) */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4 md:p-8 pointer-events-none">
-          
-          {/* Browser Mockup */}
-          <div className="w-full max-w-4xl aspect-video rounded-xl md:rounded-2xl border border-white/20 bg-[#121212] shadow-2xl overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] translate-y-[45vh] scale-[0.7] opacity-60 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 relative pointer-events-auto">
-            {/* Browser Top Bar */}
-            <div className="h-8 bg-white/10 border-b border-white/10 flex items-center px-4 gap-2 absolute top-0 w-full z-30">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-              <div className="ml-4 h-4 flex-1 max-w-[200px] bg-white/5 rounded text-[10px] text-zinc-500 flex items-center justify-center truncate">
+          <div className="w-[95%] sm:w-[85%] md:w-[75%] lg:w-[80%] xl:max-w-4xl aspect-video rounded-xl md:rounded-2xl border border-white/20 bg-[#121212] shadow-2xl overflow-hidden transition-all duration-700 ease-out translate-y-[10vh] scale-[0.85] opacity-0 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 relative pointer-events-auto">
+            <div className="h-6 sm:h-8 bg-white/10 border-b border-white/10 flex items-center px-3 sm:px-4 gap-1.5 sm:gap-2 absolute top-0 w-full z-30">
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500/80" />
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500/80" />
+              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500/80" />
+              <div className="ml-2 sm:ml-4 h-3 sm:h-4 flex-1 max-w-[150px] sm:max-w-[200px] bg-white/5 rounded text-[8px] sm:text-[10px] text-zinc-500 flex items-center justify-center truncate">
                 {project.link.replace('https://', '')}
               </div>
             </div>
             
-            {/* Mockup Video */}
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="absolute top-8 left-0 w-full h-[calc(100%-32px)] object-cover"
-            >
-              <source src={project.video} type="video/webm" />
-              <source src={project.video.replace('.webm', '.mp4')} type="video/mp4" />
-            </video>
+            {/* Otimização 5: Substituição do Vídeo por Imagem Estática */}
+            <img 
+              src={project.image}
+              alt={`${project.title} Mockup`}
+              loading="lazy"
+              className="absolute top-6 sm:top-8 left-0 w-full h-[calc(100%-24px)] sm:h-[calc(100%-32px)] object-cover object-top"
+            />
           </div>
         </div>
 
-        {/* Key Info & Button (Floating Right) */}
-        <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-6 opacity-0 translate-x-12 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-100 pointer-events-none">
-          
-          <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl w-72 shadow-2xl">
-            <span className="text-[#2563eb] text-xs font-mono font-bold tracking-wider uppercase mb-2 block">
-              {project.category}
-            </span>
-            <h4 className="text-2xl font-bold text-white mb-6 leading-tight">
-              Resultados <br/>Alcançados
-            </h4>
-            
-            <div className="flex flex-col gap-5 mb-8">
-              {project.results.map((result, idx) => (
-                <div key={idx} className="flex flex-col border-l-2 border-[#2563eb]/50 pl-4">
-                  <span className="text-3xl font-black text-white leading-none">{result.metric}</span>
-                  <span className="text-sm text-zinc-400 mt-1">{result.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center justify-between w-full px-6 py-4 bg-[#2563eb] text-white rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 pointer-events-auto group/btn shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]"
-            >
-              <span>View work</span>
-              <Eye className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
-            </a>
-          </div>
-
-        </div>
-
-        {/* Mobile View Button (Visible only on small screens) */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 md:hidden opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] pointer-events-none">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-out pointer-events-none">
           <a 
             href={project.link} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-8 py-4 bg-[#2563eb] text-white rounded-full font-bold pointer-events-auto shadow-[0_0_20px_rgba(37,99,235,0.5)]"
+            className="flex items-center gap-3 px-8 py-4 bg-[#2563eb] text-white rounded-full font-bold pointer-events-auto shadow-lg text-base hover:bg-white hover:text-black transition-colors"
           >
-            <span>View work</span>
+            <span>Ver projeto</span>
             <ArrowUpRight className="w-5 h-5" />
           </a>
         </div>
-
       </motion.div>
     </div>
   );

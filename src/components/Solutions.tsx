@@ -1,41 +1,41 @@
 "use client";
 
-import { Code2, LayoutPanelLeft, ShoppingCart, Target } from "lucide-react";
+import { Code2, LayoutPanelLeft, Cpu, Target } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Solutions() {
   const solutions = [
     {
-      title: "Sistemas Sob Medida",
-      description: "Esqueça soluções engessadas. Desenvolvemos ERPs, CRMs e plataformas completas, com arquitetura escalável e segurança de ponta, 100% aderentes ao seu fluxo de trabalho.",
+      title: "Seu Sistema, Seu Patrimônio",
+      description: "Esqueça mensalidades abusivas. Desenvolvemos um sistema que organiza seu estoque e processos, e que cresce com a sua empresa sem você precisar trocar de software.",
       icon: <Code2 className="w-8 h-8 text-[#2563eb]" />,
-      colSpan: "col-span-1 md:col-span-2 lg:col-span-8",
-      theme: "from-[#2563eb]/10 to-transparent",
-      features: ["Next.js 14", "APIs Rest/GraphQL", "Infra AWS"]
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-7",
+      theme: "from-[#2563eb]/20 to-transparent",
+      features: ["Fim das Planilhas", "Pague Uma Vez", "Acesso no Celular"]
     },
     {
-      title: "Landing Pages",
-      description: "Páginas desenhadas com um único objetivo: transformar cliques em faturamento. Design psicológico e performance ultra-rápida.",
+      title: "Sites Que Vendem Sozinhos",
+      description: "Páginas desenhadas para guiar o cliente até o seu WhatsApp. Carregam em 2 segundos e transformam visitantes curiosos em leads qualificados.",
       icon: <Target className="w-8 h-8 text-emerald-400" />,
-      colSpan: "col-span-1 md:col-span-2 lg:col-span-4",
-      theme: "from-emerald-500/10 to-transparent",
-      features: ["Testes A/B", "SEO Técnico"]
-    },
-    {
-      title: "E-commerces High-End",
-      description: "Lojas virtuais que parecem uma vitrine de luxo. Experiência de compra fluida, pagamentos seguros e painel administrativo integrado.",
-      icon: <ShoppingCart className="w-8 h-8 text-purple-400" />,
       colSpan: "col-span-1 md:col-span-2 lg:col-span-5",
-      theme: "from-purple-500/10 to-transparent",
-      features: ["Checkout Otimizado", "Gestão de Estoque"]
+      theme: "from-emerald-500/20 to-transparent",
+      features: ["Copy Estratégica", "Carregamento Rápido", "Foco em Conversão"]
     },
     {
-      title: "Design de Interface (UI/UX)",
-      description: "Sua marca transpirando autoridade através de interfaces premiadas, imersivas e absurdamente fáceis de usar.",
+      title: "Seus Dados Em Um Só Lugar",
+      description: "Conectamos seu financeiro, vendas e WhatsApp. Pare de digitar a mesma coisa duas vezes e libere até 3 horas do dia da sua equipe.",
+      icon: <Cpu className="w-8 h-8 text-purple-400" />,
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-5",
+      theme: "from-purple-500/20 to-transparent",
+      features: ["Zero Trabalho Braçal", "Informação Centralizada", "Menos Erros"]
+    },
+    {
+      title: "Experiência Premium",
+      description: "Sua empresa parece pequena na internet? Criamos visuais de alto padrão que transmitem autoridade imediata e cobram o preço que o seu serviço realmente vale.",
       icon: <LayoutPanelLeft className="w-8 h-8 text-orange-400" />,
       colSpan: "col-span-1 md:col-span-2 lg:col-span-7",
-      theme: "from-orange-500/10 to-transparent",
-      features: ["Prototipagem Figma", "Design System"]
+      theme: "from-orange-500/20 to-transparent",
+      features: ["Autoridade Imediata", "Fácil de Usar", "Design Moderno"]
     }
   ];
 
@@ -60,8 +60,8 @@ export default function Solutions() {
             <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Nossas Soluções</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] max-w-3xl">
-            Nós não entregamos código. <br />
-            <span className="text-[#2563eb]">Entregamos ecossistemas.</span>
+            Tudo automatizado. <br />
+            <span className="text-[#2563eb]">Simples como abrir um Excel.</span>
           </h2>
         </motion.div>
 

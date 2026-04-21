@@ -51,24 +51,24 @@ export default function FAQ() {
   
   const faqs = [
     {
-      question: 'Como funciona a exclusividade (Atendimento Boutique)?',
-      answer: 'Diferente de agências tradicionais, nós limitamos o número de projetos simultâneos. Isso garante que os desenvolvedores e designers seniores estejam focados 100% no seu ecossistema, entregando qualidade cirúrgica sem gargalos ou atrasos.',
+      question: 'Vou ser atendido por um robô ou estagiário no suporte?',
+      answer: 'Não. Aqui você tem o WhatsApp direto de quem construiu o seu sistema. Sem tickets de suporte demorados ou musiquinha de espera. Você fala diretamente com os fundadores para resolver qualquer dúvida.',
     },
     {
-      question: 'Quanto tempo leva para desenvolver um ecossistema?',
-      answer: 'O tempo reflete o nível de detalhe do seu projeto. Uma Landing Page High-End leva de 2 a 3 semanas. Um E-commerce de luxo ou Sistema de Gestão pode levar de 6 a 12 semanas. O cronograma exato e milimétrico é entregue na nossa primeira reunião de escopo.',
+      question: 'Um sistema sob medida não é muito caro?',
+      answer: 'Caro é perder vendas porque a planilha travou ou pagar mensalidades eternas para softwares de prateleira que não resolvem o seu problema. Nosso modelo é um investimento no seu patrimônio: o sistema é seu e se paga rapidamente com a economia de tempo e redução de erros da sua equipe.',
     },
     {
-      question: 'Vocês trabalham com templates prontos?',
-      answer: 'Absolutamente não. Cada linha de código e cada decisão de design é criada do zero para a sua marca. Um template pronto carrega códigos inúteis e design engessado; nós construímos soluções que escalam e performam no mais alto nível.',
+      question: 'Minha equipe vai ter dificuldade para aprender a usar?',
+      answer: 'Se eles sabem usar o WhatsApp ou o Excel, vão saber usar nosso sistema. Focamos em criar telas extremamente simples e intuitivas. Além disso, nós entregamos o treinamento completo para garantir que todos usem a ferramenta sem resistência.',
     },
     {
-      question: 'Quais tecnologias sustentam as aplicações?',
-      answer: 'Utilizamos as stacks mais robustas do mercado atual: Next.js 14, React, TailwindCSS, TypeScript e Framer Motion no front-end. No back-end e infraestrutura, confiamos em Node.js, Prisma, PostgreSQL e AWS para garantir segurança de nível bancário e zero quedas.',
+      question: 'O sistema é seguro? Meus dados podem vazar?',
+      answer: 'A segurança é nossa prioridade. Construímos sua plataforma com as mesmas práticas e infraestrutura de segurança usadas pelas maiores empresas de tecnologia do mundo. Seus dados e os dados dos seus clientes ficam blindados e o sistema não sai do ar.',
     },
     {
-      question: 'O que acontece após o lançamento (Deploy)?',
-      answer: 'Nós não abandonamos o barco. Oferecemos pacotes de suporte e evolução contínua (Retainer) onde cuidamos da infraestrutura, atualizações de segurança, monitoramento de uptime 24/7 e desenvolvimento de novas features enquanto seu negócio escala.',
+      question: 'E se a minha empresa crescer e eu precisar de coisas novas?',
+      answer: 'Essa é a maior vantagem de ter o seu próprio sistema. Ele cresce junto com você. Como não usamos soluções engessadas, podemos criar novas funções, painéis e integrações sempre que o seu negócio der um novo passo.',
     },
   ];
   

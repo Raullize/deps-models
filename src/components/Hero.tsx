@@ -20,29 +20,34 @@ export default function Hero() {
       </div>
       
       <div className="max-w-4xl mx-auto text-center relative z-20">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Transformamos Ideias em
-          <div className="text-white-400 block md:inline-block min-h-[1.5em] md:ml-3">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+          Pare de perder vendas por <br />
+          <div className="text-blue-500 block mt-2 min-h-[1.5em]">
             <TextType
-              text={['Experiências Digitais', 'Soluções Inovadoras', 'Resultados Reais']}
-              typingSpeed={100}
-              deletingSpeed={50}
-              pauseDuration={2000}
+              text={[
+                'planilhas travadas', 
+                'sistemas engessados', 
+                'falta de processos', 
+                'sites que não convertem'
+              ]}
+              typingSpeed={80}
+              deletingSpeed={40}
+              pauseDuration={2500}
               loop={true}
               cursorCharacter="_"
               showCursor={true}
             />
           </div>
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-          Criamos soluções web de alta performance que unem design, eficiência e tecnologia para impulsionar o seu negócio.
+        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Nós desenvolvemos o sistema sob medida que organiza sua empresa e libera horas do seu dia. Automatizamos seus processos sem complicar.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a 
             href="#services" 
             className="group relative w-full sm:w-auto overflow-hidden bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] flex items-center justify-center"
           >
-            <span className="relative z-10">Ver Serviços</span>
+            <span className="relative z-10">Quero organizar minha empresa</span>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           
@@ -50,7 +55,7 @@ export default function Hero() {
             href="#contact" 
             className="w-full sm:w-auto bg-white/5 border border-white/10 backdrop-blur-sm text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105 flex items-center justify-center"
           >
-            Pedir Orçamento
+            Falar no WhatsApp
           </a>
         </div>
       </div>

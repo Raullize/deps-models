@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  button, a {
+    @apply cursor-pointer;
+  }
+}
+
 @layer utilities {
   @keyframes scan {
     0% { transform: translateY(-100px); opacity: 0; }

@@ -6,33 +6,33 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 const steps = [
   {
     number: "01",
-    title: "Alinhamento de Visão",
-    description: "Sentamos para entender seus objetivos e desenhar o caminho mais curto para o seu sucesso.",
-    tags: ["Workshops Estratégicos", "Definição de KPIs", "Análise de Mercado"],
+    title: "Mapeamento Rápido",
+    description: "Em apenas 1 hora de conversa, mapeamos seus processos e entendemos exatamente onde seu negócio está perdendo dinheiro.",
+    tags: ["Análise de Dores", "Diagnóstico Gratuito", "Proposta de Valor"],
   },
   {
     number: "02",
-    title: "Experiência do Usuário",
-    description: "Criamos interfaces que não são apenas bonitas, mas feitas para guiar seu cliente até a compra.",
-    tags: ["Wireframes e Fluxos", "Prototipagem High-End", "Testes de Usabilidade"],
+    title: "Desenvolvimento Transparente",
+    description: "Criamos seu sistema do zero. Você acompanha tudo de perto e já vê as telas ganhando vida antes mesmo de finalizado.",
+    tags: ["Sem Surpresas", "Foco em Resultados", "Aprovação por Etapas"],
   },
   {
     number: "03",
-    title: "Construção Inteligente",
-    description: "Transformamos o plano em realidade com tecnologia de ponta, focada em velocidade e estabilidade.",
-    tags: ["Arquitetura Escalável", "Código Limpo", "Integrações Complexas"],
+    title: "Testes Práticos",
+    description: "Garantimos que o sistema seja simples de usar. Se a sua equipe sabe usar o WhatsApp, vai saber usar nossa plataforma.",
+    tags: ["Zero Complexidade", "Sem Telas Confusas", "Ajustes Rápidos"],
   },
   {
     number: "04",
-    title: "Refinamento de Excelência",
-    description: "Garantimos que cada detalhe esteja impecável para que sua marca passe a confiança que merece.",
-    tags: ["Auditoria de Performance", "Testes de Estresse", "Ajustes Finos de UI"],
+    title: "Treinamento da Equipe",
+    description: "Não te deixamos na mão. Em 1 dia útil, treinamos seus funcionários para que todos extraiam o máximo do novo sistema.",
+    tags: ["Onboarding Fácil", "Adoção Imediata", "Sem Resistência"],
   },
   {
     number: "05",
-    title: "Decolagem e Sucesso",
-    description: "Colocamos seu projeto no ar e acompanhamos os primeiros passos da sua nova fase digital.",
-    tags: ["Deploy Otimizado", "Monitoramento em Tempo Real", "Suporte Contínuo"],
+    title: "Suporte Direto (WhatsApp)",
+    description: "Esqueça tickets demorados ou robôs. Você fala diretamente no WhatsApp com quem desenvolveu o seu projeto.",
+    tags: ["Atendimento Humano", "Respostas Rápidas", "Parceria Longa"],
   },
 ];
 
@@ -58,14 +58,14 @@ export default function ProcessSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08)_0%,rgba(10,10,10,1)_70%)] pointer-events-none" />
 
       {/* Header - Sticky Fixed at the very top of the section so it NEVER scrolls away while in this section */}
-      <div className="sticky top-0 w-full z-50 pt-8 md:pt-12 px-4 md:px-12 pointer-events-none h-0">
+      <div className="sticky top-0 w-full z-50 pt-0 md:pt-4 px-4 md:px-12 pointer-events-none h-0">
         <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight pointer-events-auto bg-[#0a0a0a]/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-none inline-block p-2 md:p-0 rounded-lg">
           NOSSO <span className="text-[#2563eb] drop-shadow-[0_0_15px_rgba(37,99,235,0.8)]">PROCESSO</span>
         </h2>
       </div>
 
       {/* Pinned container */}
-      <div className="relative md:sticky md:top-0 md:h-screen flex flex-col justify-center overflow-hidden py-24 md:py-0 pt-32 md:pt-0">
+      <div className="relative md:sticky md:top-0 md:h-screen flex flex-col justify-center overflow-hidden py-12 md:py-0">
         
         {/* Tiny Progress Bar - Fills up with scroll */}
         <motion.div 
@@ -145,26 +145,24 @@ function TimelineStep({ step, index, progress, total }: { step: typeof steps[0],
     "#0a0a0a"
   ]);
   const dotScale = useTransform(distance, [0, 0.15], [1.8, 1]);
-  const textOpacity = useTransform(distance, [0, 0.15, 0.25], [1, 1, 0.3]); // Stays at 100% opacity longer, minimum 30%
-  const textY = useTransform(distance, [0, 0.25], [0, 30]); // Moves down slower
   
-  // Multi-layered blur for extreme depth
-  // Stays 0px blur for longer (until 0.15 distance), then blurs up to 8px (less blurry than before)
-  const foregroundBlur = useTransform(distance, [0, 0.15, 0.25], ["blur(0px)", "blur(0px)", "blur(8px)"]);
-  const backgroundBlur = useTransform(distance, [0, 0.15, 0.25], ["blur(0px)", "blur(0px)", "blur(12px)"]);
+  // Otimização de Performance: Removendo o filtro de blur pesadíssimo no scroll
+  // Em vez de borrar a tela, apenas controlamos a opacidade e escala para dar profundidade
+  const textOpacity = useTransform(distance, [0, 0.15, 0.3], [1, 1, 0.15]); 
+  const textY = useTransform(distance, [0, 0.25], [0, 30]);
   
   // Parallax effect: The background number moves slightly opposite to the scroll
   const parallaxX = useTransform(progress, (p) => {
-    return (p - stepProgress) * 200; // Reduced parallax distance slightly to keep it more readable
+    return (p - stepProgress) * 200;
   });
   
-  // Scale down items that are far away (less aggressive scale down)
+  // Scale down items that are far away
   const itemScale = useTransform(distance, [0, 0.15, 0.3], [1, 1, 0.85]);
 
   return (
     <motion.div 
       className="relative flex flex-row items-center justify-between w-[1100px] h-[600px] shrink-0 px-12"
-      style={{ scale: itemScale }}
+      style={{ scale: itemScale, willChange: "transform" }}
     >
       
       {/* Background Giant Number with Parallax */}
@@ -175,8 +173,8 @@ function TimelineStep({ step, index, progress, total }: { step: typeof steps[0],
           WebkitTextStroke: "3px rgba(37,99,235,0.4)",
           textShadow: "0 0 100px rgba(37,99,235,0.25)",
           opacity: textOpacity,
-          filter: backgroundBlur,
           x: parallaxX,
+          willChange: "transform, opacity",
         }}
       >
         {step.number}
@@ -188,7 +186,7 @@ function TimelineStep({ step, index, progress, total }: { step: typeof steps[0],
         style={{
           opacity: textOpacity,
           y: textY,
-          filter: foregroundBlur,
+          willChange: "transform, opacity",
         }}
       >
         <div className="flex items-center gap-4 mb-6">
@@ -229,13 +227,13 @@ function TimelineStep({ step, index, progress, total }: { step: typeof steps[0],
         style={{
           opacity: textOpacity,
           scale: useTransform(distance, [0, 0.15], [1, 0.8]),
-          filter: foregroundBlur,
+          willChange: "transform, opacity",
         }}
       >
-        {/* Glow behind illustration */}
+        {/* Glow behind illustration - Simplificado e mais leve */}
         <motion.div 
-          className="absolute inset-0 bg-[#2563eb] rounded-full blur-[100px] -z-10"
-          style={{ opacity: useTransform(distance, [0, 0.1], [0.15, 0]) }}
+          className="absolute inset-0 bg-[#2563eb] rounded-full blur-[60px] -z-10"
+          style={{ opacity: useTransform(distance, [0, 0.1], [0.1, 0]), willChange: "opacity" }}
         />
         <AbstractVisual stepNumber={step.number} />
       </motion.div>
