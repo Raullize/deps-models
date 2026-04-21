@@ -1,12 +1,15 @@
-'use client';
+"use client";
+
 import { useState } from 'react';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    projectType: '',
+    company: '',
+    budget: '',
     message: ''
   });
 
@@ -23,175 +26,148 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Vamos transformar sua <span className="text-blue-400">ideia em realidade</span>?
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Esteja em contato conosco e descubra como podemos impulsionar seu negócio com soluções digitais sob medida.
-          </p>
-        </div>
+    <section id="contact" className="relative py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] overflow-hidden border-t border-white/5">
+      {/* Massive Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.08)_0%,transparent_60%)] pointer-events-none" />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Entre em contato</h3>
-              <p className="text-gray-300 mb-8">
-                Estamos prontos para ouvir sua ideia e apresentar a melhor solução para o seu projeto. Vamos juntos transformar suas necessidades digitais em realidade.
-              </p>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32">
+          
+          {/* Left Column: Contact Info & Copy */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8 w-max">
+              <div className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse" />
+              <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Inicie seu Projeto</span>
             </div>
 
-            {/* Informações de Contato */}
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              Pronto para <br />
+              <span className="text-[#2563eb] italic font-serif">escalar?</span>
+            </h2>
+            
+            <p className="text-xl text-zinc-400 font-light leading-relaxed mb-16 max-w-lg">
+              Nossa agenda para novos projetos é limitada. Preencha o formulário para agendarmos uma reunião de alinhamento estratégico.
+            </p>
+
+            {/* Direct Contacts */}
+            <div className="flex flex-col gap-8">
+              <div className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#2563eb] group-hover:bg-[#2563eb]/10 transition-all duration-500">
+                  <Mail className="w-5 h-5 text-zinc-400 group-hover:text-[#2563eb] transition-colors" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">Telefone</div>
-                  <div className="text-gray-400">+55 51 9983-2724</div>
+                  <p className="text-sm text-zinc-500 font-mono mb-1 uppercase tracking-wider">E-mail Direto</p>
+                  <p className="text-xl text-white font-light">depsmodels@gmail.com</p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+              <div className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#2563eb] group-hover:bg-[#2563eb]/10 transition-all duration-500">
+                  <MapPin className="w-5 h-5 text-zinc-400 group-hover:text-[#2563eb] transition-colors" />
                 </div>
                 <div>
-                  <div className="text-white font-medium">E-mail</div>
-                  <div className="text-gray-400">depsmodels@gmail.com</div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-white font-medium">Localização</div>
-                  <div className="text-gray-400">Rio Grande do Sul, Brasil</div>
+                  <p className="text-sm text-zinc-500 font-mono mb-1 uppercase tracking-wider">Localização</p>
+                  <p className="text-xl text-white font-light">Rio Grande do Sul, BR</p>
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            {/* Resposta Rápida */}
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <h4 className="text-white font-semibold mb-2">Resposta Rápida</h4>
-              <p className="text-gray-400 text-sm">
-                Respondemos todos os contatos em até 2 horas úteis. Para projetos urgentes, 
-                entre em contato via WhatsApp.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-white font-medium mb-2">
-                    Nome *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Seu nome completo"
-                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-white font-medium mb-2">
-                    E-mail *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="seu@email.com"
-                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-white font-medium mb-2">
-                  Telefone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+          {/* Right Column: Premium Form */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="bg-[#121212]/80 backdrop-blur-xl p-8 md:p-12 lg:p-16 rounded-[2rem] md:rounded-[3rem] border border-white/5 shadow-2xl"
+          >
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+              
+              {/* Input Group */}
+              <div className="relative group">
+                <input 
+                  type="text" 
+                  name="name"
+                  id="name"
+                  required
+                  placeholder="Seu nome ou da empresa"
+                  value={formData.name}
                   onChange={handleChange}
-                  placeholder="(11) 99999-9999"
-                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
                 />
               </div>
 
-              <div>
-                <label htmlFor="projectType" className="block text-white font-medium mb-2">
-                  Tipo de Projeto *
-                </label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formData.projectType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              {/* Input Group */}
+              <div className="relative group">
+                <input 
+                  type="email" 
+                  name="email"
+                  id="email"
                   required
+                  placeholder="E-mail profissional"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
+                />
+              </div>
+
+              {/* Input Group */}
+              <div className="relative group">
+                <select
+                  name="budget"
+                  id="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-zinc-400 focus:outline-none focus:border-[#2563eb] transition-colors appearance-none cursor-pointer"
                 >
-                  <option value="">Selecione o tipo de projeto</option>
-                  <option value="landing-page">Landing Page</option>
-                  <option value="ecommerce">E-commerce</option>
-                  <option value="site-institucional">Site Institucional</option>
-                  <option value="software-personalizado">Software Personalizado</option>
-                  <option value="outros">Outros</option>
+                  <option value="" disabled className="bg-[#121212]">Orçamento estimado</option>
+                  <option value="10k-20k" className="bg-[#121212]">R$ 10.000 - R$ 20.000</option>
+                  <option value="20k-50k" className="bg-[#121212]">R$ 20.000 - R$ 50.000</option>
+                  <option value="50k+" className="bg-[#121212]">Mais de R$ 50.000</option>
                 </select>
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-white font-medium mb-2">
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
+              {/* Input Group */}
+              <div className="relative group">
+                <textarea 
                   name="message"
+                  id="message"
+                  required
+                  rows={3}
+                  placeholder="Conte-nos um pouco sobre o seu projeto..."
                   value={formData.message}
                   onChange={handleChange}
-                  rows={5}
-                  placeholder="Conte-nos sobre seu projeto, objetivos e principais necessidades..."
-                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
-                ></textarea>
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors resize-none peer"
+                />
               </div>
 
-              <button
+              {/* Submit Button */}
+              <button 
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center cursor-pointer"
+                className="group relative w-full py-5 bg-white text-black font-bold text-lg rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Enviar Orçamento</span>
+                {/* Button Hover Effect */}
+                <div className="absolute inset-0 bg-[#2563eb] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                
+                <span className="relative z-10 flex items-center justify-center gap-3 group-hover:text-white transition-colors duration-500">
+                  Enviar Solicitação
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
               </button>
 
-              <p className="text-gray-400 text-sm text-center">
-                Ao enviar este formulário, você concorda que entraremos em contato para apresentar nossa proposta personalizada.
+              <p className="text-center text-sm text-zinc-500 font-light mt-[-10px]">
+                Nossa equipe entrará em contato em até 24h úteis.
               </p>
+
             </form>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

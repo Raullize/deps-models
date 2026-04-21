@@ -1,140 +1,112 @@
+"use client";
+
+import { Code2, LayoutPanelLeft, ShoppingCart, Target } from "lucide-react";
+import { motion } from "framer-motion";
+
 export default function Solutions() {
+  const solutions = [
+    {
+      title: "Sistemas Sob Medida",
+      description: "Esqueça soluções engessadas. Desenvolvemos ERPs, CRMs e plataformas completas, com arquitetura escalável e segurança de ponta, 100% aderentes ao seu fluxo de trabalho.",
+      icon: <Code2 className="w-8 h-8 text-[#2563eb]" />,
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-8",
+      theme: "from-[#2563eb]/10 to-transparent",
+      features: ["Next.js 14", "APIs Rest/GraphQL", "Infra AWS"]
+    },
+    {
+      title: "Landing Pages",
+      description: "Páginas desenhadas com um único objetivo: transformar cliques em faturamento. Design psicológico e performance ultra-rápida.",
+      icon: <Target className="w-8 h-8 text-emerald-400" />,
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-4",
+      theme: "from-emerald-500/10 to-transparent",
+      features: ["Testes A/B", "SEO Técnico"]
+    },
+    {
+      title: "E-commerces High-End",
+      description: "Lojas virtuais que parecem uma vitrine de luxo. Experiência de compra fluida, pagamentos seguros e painel administrativo integrado.",
+      icon: <ShoppingCart className="w-8 h-8 text-purple-400" />,
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-5",
+      theme: "from-purple-500/10 to-transparent",
+      features: ["Checkout Otimizado", "Gestão de Estoque"]
+    },
+    {
+      title: "Design de Interface (UI/UX)",
+      description: "Sua marca transpirando autoridade através de interfaces premiadas, imersivas e absurdamente fáceis de usar.",
+      icon: <LayoutPanelLeft className="w-8 h-8 text-orange-400" />,
+      colSpan: "col-span-1 md:col-span-2 lg:col-span-7",
+      theme: "from-orange-500/10 to-transparent",
+      features: ["Prototipagem Figma", "Design System"]
+    }
+  ];
+
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            A <span className="text-blue-400">DEPS Models</span> entrega soluções sob medida
+    <section id="services" className="relative py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.03)_0%,transparent_100%)] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        
+        {/* Minimalist Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-20 md:mb-32"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-6">
+            <div className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse" />
+            <span className="text-xs font-mono text-zinc-300 uppercase tracking-widest">Nossas Soluções</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] max-w-3xl">
+            Nós não entregamos código. <br />
+            <span className="text-[#2563eb]">Entregamos ecossistemas.</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            Transformamos seus desafios em oportunidades através de tecnologia de ponta e desenvolvimento personalizado.
-          </p>
+        </motion.div>
+
+        {/* High-End Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+          {solutions.map((solution, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+              className={`${solution.colSpan} group relative p-8 md:p-10 rounded-[2rem] border border-white/10 bg-[#121212] overflow-hidden hover:border-white/20 transition-all duration-500`}
+            >
+              {/* Subtle Gradient Hover Effect */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${solution.theme} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                  {solution.icon}
+                </div>
+                
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-wide">
+                  {solution.title}
+                </h3>
+                
+                <p className="text-zinc-400 text-lg leading-relaxed font-light mb-8 flex-grow">
+                  {solution.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {solution.features.map((feature, i) => (
+                    <span 
+                      key={i} 
+                      className="px-3 py-1 rounded-md bg-[#0a0a0a] border border-white/5 text-sm text-zinc-300 font-medium"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-blue-400/50 transition-all duration-300">
-            <div className="flex items-start space-x-4 mb-6">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Software Personalizado</h3>
-                <p className="text-gray-300 mb-6">
-                  Desenvolvemos sistemas sob medida que atendem exatamente às suas necessidades específicas.
-                </p>
-              </div>
-            </div>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span className="text-gray-300">Arquitetura escalável</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span className="text-gray-300">Interface intuitiva</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span className="text-gray-300">Integração completa</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Landing Pages */}
-          <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300">
-            <div className="flex items-start space-x-4 mb-6">
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Landing Pages de Alta Conversão</h3>
-                <p className="text-gray-300 mb-6">
-                  Páginas otimizadas para converter visitantes em clientes, com foco em resultados.
-                </p>
-              </div>
-            </div>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-gray-300">Design responsivo</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-gray-300">SEO otimizado</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span className="text-gray-300">Analytics integrado</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* E-commerces */}
-          <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-400/50 transition-all duration-300">
-            <div className="flex items-start space-x-4 mb-6">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">E-commerces Escaláveis</h3>
-                <p className="text-gray-300 mb-6">
-                  Lojas virtuais completas e prontas para crescer junto com seu negócio.
-                </p>
-              </div>
-            </div>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span className="text-gray-300">Pagamentos seguros</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span className="text-gray-300">Gestão de estoque</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                <span className="text-gray-300">Multi-plataforma</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Sites Institucionais */}
-          <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-orange-400/50 transition-all duration-300">
-            <div className="flex items-start space-x-4 mb-6">
-              <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-3">Sites Institucionais Modernos</h3>
-                <p className="text-gray-300 mb-6">
-                  Presença digital profissional que transmite credibilidade e autoridade.
-                </p>
-              </div>
-            </div>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                <span className="text-gray-300">Performance otimizada</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                <span className="text-gray-300">Design moderno</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                <span className="text-gray-300">Fácil manutenção</span>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
   );
