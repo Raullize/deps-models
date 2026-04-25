@@ -26,6 +26,7 @@
 # misc
 .DS_Store
 *.pem
+/planos
 
 # debug
 npm-debug.log*
