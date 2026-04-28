@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, Linkedin, Github, ArrowUpRight } from 'lucide-react';
+import { Instagram, Linkedin, Github, ArrowUpRight, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -62,11 +62,21 @@ export default function Footer() {
             &copy; {currentYear} DEPS Models. Todos os direitos reservados.
           </p>
           
-          {/* Socials */}
-          <div className="flex space-x-3 justify-center md:justify-start w-full md:w-auto">
-            <SocialLink href="https://www.instagram.com/depsmodels/" icon={<Instagram size={18} />} label="Instagram" />
-            <SocialLink href="https://www.linkedin.com/company/depsmodels/" icon={<Linkedin size={18} />} label="LinkedIn" />
-            <SocialLink href="https://github.com/depsModels" icon={<Github size={18} />} label="GitHub" />
+          <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8 md:pr-24 lg:pr-32">
+            <Link 
+              href="/#home"
+              className="text-sm font-medium text-zinc-400 hover:text-white flex items-center gap-2 transition-colors group"
+            >
+              Voltar ao topo 
+              <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+
+            {/* Socials */}
+            <div className="flex space-x-3">
+              <SocialLink href="https://www.instagram.com/depsmodels/" icon={<Instagram size={18} />} label="Instagram" />
+              <SocialLink href="https://www.linkedin.com/company/depsmodels/" icon={<Linkedin size={18} />} label="LinkedIn" />
+              <SocialLink href="https://github.com/depsModels" icon={<Github size={18} />} label="GitHub" />
+            </div>
           </div>
         </div>
       </div>
