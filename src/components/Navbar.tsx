@@ -7,12 +7,12 @@ import { motion } from 'framer-motion';
 // import { TbWorld } from 'react-icons/tb'; // Descomentar para i18n
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Soluções' },
-  { href: '#portfolio', label: 'Projetos' },
-  { href: '#process', label: 'Processo' },
-  { href: '#faq', label: 'Dúvidas' },
-  { href: '#contact', label: 'Contato' },
+  { href: '/#home', label: 'Home' },
+  { href: '/#services', label: 'Soluções' },
+  { href: '/#portfolio', label: 'Projetos' },
+  { href: '/#process', label: 'Processo' },
+  { href: '/#faq', label: 'Dúvidas' },
+  { href: '/#contact', label: 'Contato' },
 ];
 
 export default function Navbar() {
