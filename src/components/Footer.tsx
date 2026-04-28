@@ -94,7 +94,7 @@ export default function Footer() {
               {/* Copyright */}
               <div className="flex flex-col gap-1">
                 <p className="text-zinc-500 text-xs font-light">
-                  Copyright &copy; {currentYear}, DEPS Models e/ou suas afiliadas. Todos os direitos reservados.
+                  Copyright &copy; {currentYear}, DEPS Models. Todos os direitos reservados.
                 </p>
               </div>
             </div>
