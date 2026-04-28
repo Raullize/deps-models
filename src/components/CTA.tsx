@@ -42,7 +42,7 @@ export default function CTA() {
             className="group relative inline-flex items-center justify-center py-5 px-12 bg-white text-black font-bold text-lg md:text-xl rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             {/* Button Hover Effect */}
-            <div className="absolute inset-0 bg-[#2563eb] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+            <div className="absolute inset-0 bg-[#2563eb] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
             
             <span className="relative z-10 flex items-center justify-center gap-3 group-hover:text-white transition-colors duration-500">
               Falar com Especialista Agora
