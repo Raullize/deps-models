@@ -32,8 +32,13 @@ export default function Footer() {
             </div>
             
             <div className="mt-8 lg:mt-0 flex justify-center md:justify-start w-full">
-              <a href="mailto:depsmodels@gmail.com" className="inline-flex items-center justify-center md:justify-start gap-2 text-xl md:text-2xl font-light text-zinc-300 hover:text-white transition-colors group">
-                depsmodels@gmail.com
+              <a 
+                href="https://wa.me/5551999832724?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20DEPS%20Models." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center justify-center md:justify-start gap-2 text-xl md:text-2xl font-light text-zinc-300 hover:text-white transition-colors group"
+              >
+                Falar no WhatsApp
                 <ArrowUpRight className="w-5 h-5 text-[#2563eb] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
             </div>
