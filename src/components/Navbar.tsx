@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { TbWorld } from 'react-icons/tb';
+// import { TbWorld } from 'react-icons/tb'; // Descomentar para i18n
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -17,8 +17,11 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('PT');
   const [hoveredLink, setHoveredLink] = useState<string>('#home');
+
+  // TODO: Variáveis e funções comentadas para futura implementação de i18n
+  /*
+  const [currentLanguage, setCurrentLanguage] = useState('PT');
   const [isLangDropdownOpen, setLangDropdownOpen] = useState(false);
   const languages = ['PT', 'EN'];
   const langDropdownRef = useRef<HTMLDivElement>(null);
@@ -27,6 +30,7 @@ export default function Navbar() {
     setCurrentLanguage(lang);
     setLangDropdownOpen(false);
   };
+  */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +43,8 @@ export default function Navbar() {
     };
   }, []);
 
+  // TODO: Efeito comentado para futura implementação de i18n
+  /*
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
@@ -51,6 +57,7 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  */
 
   return (
     <nav className={`absolute top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-transparent/5' : ''}`}>
@@ -95,7 +102,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Seletor de Idioma Dropdown */}
+          {/* Seletor de Idioma Dropdown (Comentado para implementação futura de i18n) */}
+          {/*
           <div className="absolute right-0 flex items-center">
             <div className="relative" ref={langDropdownRef}>
               <button
@@ -123,6 +131,7 @@ export default function Navbar() {
               )}
             </div>
           </div>
+          */}
         </div>
       </div>
     </nav>
