@@ -22,7 +22,7 @@ const projects = [
     title: 'Armazém Girassol',
     category: 'E-commerce & Controle de Estoque',
     description: 'Desenvolvimento de uma plataforma de vendas online totalmente integrada com o sistema de retaguarda (estoque). Uma solução sob medida para digitalizar a operação de um varejo local.',
-    image: '/images/ArmazemGirassol-cover.jpeg',
+    image: '/images/armazem-girassol-cover.jpeg',
     link: 'https://armazem-girassol.vercel.app/',
     linkText: 'Ver projeto completo',
     results: [
