@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { ArrowRight, Mail, MapPin, CheckCircle2, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { submitContact } from '@/app/actions/contact';
 import { siteConfig } from '@/lib/site';
 import { trackEvent } from '@/lib/analytics';
 
@@ -27,27 +26,21 @@ export default function ContactForm() {
     setStatus('loading');
     
     try {
-      const fd = new FormData();
-      formData.name && fd.append('name', formData.name);
-      formData.whatsapp && fd.append('whatsapp', formData.whatsapp);
-      formData.email && fd.append('email', formData.email);
-
-      const result = await submitContact(fd);
-
-      if (result.error) {
+      if (!formData.name || !formData.whatsapp) {
         setStatus('error');
-        trackEvent('form_error', { form: 'contact', error: result.error });
+        trackEvent('form_error', { form: 'contact', error: 'Nome e WhatsApp são obrigatórios' });
         return;
       }
+
+      // Simulando um delay mínimo para feedback visual do botão
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
       setStatus('success');
       trackEvent('form_submit', { form: 'contact' });
       
-      // Redireciona para o WhatsApp após 1 segundo como prometido
-      setTimeout(() => {
-        const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Gostaria de falar sobre um projeto.`);
-        window.open(`https://wa.me/${siteConfig.contact.whatsapp.number}?text=${text}`, '_blank');
-      }, 1000);
+      // Redireciona para o WhatsApp
+      const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Gostaria de falar sobre um projeto.`);
+      window.open(`https://wa.me/${siteConfig.contact.whatsapp.number}?text=${text}`, '_blank');
 
     } catch (error) {
       console.error(error);
