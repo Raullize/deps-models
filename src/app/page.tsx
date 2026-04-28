@@ -3,7 +3,7 @@ import ValueProposition from '@/components/ValueProposition';
 import Portfolio from '@/components/Portfolio';
 import ProcessSection from '@/components/ProcessSection';
 import FAQ from '@/components/FAQ';
-import ContactForm from '@/components/ContactForm';
+import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <Portfolio />
       <ProcessSection />
       <FAQ />
-      <ContactForm />
+      <CTA />
       <Footer />
     </main>
   );

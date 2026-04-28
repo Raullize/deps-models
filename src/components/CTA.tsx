@@ -1,10 +1,10 @@
 "use client";
 
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/lib/site';
 
-export default function ContactForm() {
+export default function CTA() {
   const handleWhatsAppClick = () => {
     const text = encodeURIComponent(`Olá! Gostaria de falar com um especialista da DEPS Models sobre o meu projeto.`);
     window.open(`https://wa.me/${siteConfig.contact.whatsapp.number}?text=${text}`, '_blank');
@@ -39,7 +39,7 @@ export default function ContactForm() {
 
           <button 
             onClick={handleWhatsAppClick}
-            className="group relative inline-flex items-center justify-center py-5 px-12 bg-white text-black font-bold text-lg md:text-xl rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98] mb-12"
+            className="group relative inline-flex items-center justify-center py-5 px-12 bg-white text-black font-bold text-lg md:text-xl rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             {/* Button Hover Effect */}
             <div className="absolute inset-0 bg-[#2563eb] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
@@ -49,19 +49,6 @@ export default function ContactForm() {
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
-
-          {/* Direct Contacts */}
-          <div className="flex justify-center">
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#2563eb] group-hover:bg-[#2563eb]/10 transition-all duration-500">
-                <MapPin className="w-5 h-5 text-zinc-400 group-hover:text-[#2563eb] transition-colors" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-zinc-500 font-mono mb-1 uppercase tracking-wider">Localização</p>
-                <p className="text-lg text-white font-light">Rio Grande do Sul, BR</p>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

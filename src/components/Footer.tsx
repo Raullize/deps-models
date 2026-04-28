@@ -17,17 +17,8 @@ export default function Footer() {
           {/* Brand Col (Takes 5 columns) */}
           <div className="lg:col-span-5 flex flex-col justify-between items-center md:items-start">
             <div className="flex flex-col items-center md:items-start">
-              <Link href="/" className="inline-block mb-8 hover:opacity-80 transition-opacity">
-                <Image 
-                  src="/logos/logo-icon-2.png" 
-                  alt="DEPS Models Logo" 
-                  width={140} 
-                  height={140} 
-                  className="w-[140px] h-auto"
-                />
-              </Link>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight max-w-sm">
-                Não criamos apenas sites. Construímos <span className="text-[#2563eb]">ecossistemas digitais</span>.
+                Não criamos apenas sites.<br/>Construímos <span className="text-[#2563eb]">ecossistemas digitais</span>.
               </h3>
             </div>
             
@@ -36,7 +27,7 @@ export default function Footer() {
                 href="https://wa.me/5551999832724?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20DEPS%20Models." 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center md:justify-start gap-2 text-xl md:text-2xl font-light text-zinc-300 hover:text-white transition-colors group"
+                className="inline-flex items-center justify-center md:justify-start gap-2 text-xl font-light text-zinc-300 hover:text-white transition-colors group"
               >
                 Falar no WhatsApp
                 <ArrowUpRight className="w-5 h-5 text-[#2563eb] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -62,10 +53,40 @@ export default function Footer() {
         </div>
         
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-6 text-center md:text-left">
-          <p className="text-zinc-500 text-sm font-light">
-            &copy; {currentYear} DEPS Models. Todos os direitos reservados.
-          </p>
+        <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start pt-8 border-t border-white/5 gap-8 text-center xl:text-left">
+          
+          <div className="flex flex-col xl:flex-row items-center xl:items-start gap-6 xl:gap-8">
+            {/* Logo on Bottom Bar */}
+            <Link href="/" className="inline-block hover:opacity-80 transition-opacity shrink-0">
+              <Image 
+                src="/logos/logo-icon-2.png" 
+                alt="DEPS Models Logo" 
+                width={120} 
+                height={120} 
+                className="w-[100px] h-auto"
+              />
+            </Link>
+
+            <div className="flex flex-col gap-3">
+              {/* Legal Links inline */}
+              <div className="flex flex-wrap justify-center xl:justify-start items-center gap-x-3 gap-y-2 text-sm font-medium text-zinc-300">
+                <Link href="/termos-de-uso" className="hover:text-white transition-colors">Termos de Uso</Link>
+                <span className="text-zinc-600">|</span>
+                <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">Política de Privacidade</Link>
+                <span className="text-zinc-600">|</span>
+                <Link href="/marcas" className="hover:text-white transition-colors">Marcas</Link>
+                <span className="text-zinc-600">|</span>
+                <Link href="/licencas" className="hover:text-white transition-colors">Contratos de Licença</Link>
+              </div>
+
+              {/* Copyright */}
+              <div className="flex flex-col gap-1">
+                <p className="text-zinc-500 text-xs font-light">
+                  Copyright &copy; {currentYear}, DEPS Models e/ou suas afiliadas. Todos os direitos reservados.
+                </p>
+              </div>
+            </div>
+          </div>
           
           <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8 md:pr-24 lg:pr-32">
             <Link 
