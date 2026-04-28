@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="relative pt-24 pb-8 bg-[#0a0a0a] overflow-hidden border-t border-white/5">
       {/* Background Decorators */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#2563eb]/30 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#2563eb]/30 to-transparent" />
       <div className="absolute top-0 right-0 w-1/3 h-64 bg-[#2563eb] rounded-full blur-[150px] opacity-[0.03] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -86,8 +86,6 @@ export default function Footer() {
                 <span className="text-zinc-600">|</span>
                 <Link href="/#home" className="hover:text-white transition-colors">Política de Privacidade</Link>
                 <span className="text-zinc-600">|</span>
-                <Link href="/#home" className="hover:text-white transition-colors">Marcas</Link>
-                <span className="text-zinc-600">|</span>
                 <Link href="/#home" className="hover:text-white transition-colors">Contratos de Licença</Link>
               </div>
 
@@ -146,7 +144,7 @@ function FooterLink({ href, external, children }: { href: string; external?: boo
           rel="noopener noreferrer"
           className="text-zinc-400 hover:text-white transition-colors duration-300 text-base font-light flex items-center group"
         >
-          <span className="w-0 h-[1px] bg-[#2563eb] mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
+          <span className="w-0 h-px bg-[#2563eb] mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
           {children}
         </a>
       </li>
@@ -159,7 +157,7 @@ function FooterLink({ href, external, children }: { href: string; external?: boo
         href={href} 
         className="text-zinc-400 hover:text-white transition-colors duration-300 text-base font-light flex items-center group"
       >
-        <span className="w-0 h-[1px] bg-[#2563eb] mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
+        <span className="w-0 h-px bg-[#2563eb] mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
         {children}
       </Link>
     </li>
