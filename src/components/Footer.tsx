@@ -23,6 +23,7 @@ export default function Footer() {
                   alt="DEPS Models Logo" 
                   width={140} 
                   height={140} 
+                  className="w-auto h-auto"
                 />
               </Link>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight max-w-sm">
