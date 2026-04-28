@@ -35,6 +35,7 @@ export default function Hero() {
               pauseDuration={2500}
               loop={true}
               cursorCharacter="_"
+              cursorClassName="text-white"
               showCursor={true}
             />
           </div>
