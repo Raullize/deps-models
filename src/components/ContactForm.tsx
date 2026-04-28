@@ -1,28 +1,58 @@
 "use client";
 
 import { useState } from 'react';
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, CheckCircle2, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { submitContact } from '@/app/actions/contact';
+import { siteConfig } from '@/lib/site';
+import { trackEvent } from '@/lib/analytics';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
+    whatsapp: '',
     email: '',
-    phone: '',
-    company: '',
-    message: ''
   });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setStatus('loading');
+    
+    try {
+      const fd = new FormData();
+      formData.name && fd.append('name', formData.name);
+      formData.whatsapp && fd.append('whatsapp', formData.whatsapp);
+      formData.email && fd.append('email', formData.email);
+
+      const result = await submitContact(fd);
+
+      if (result.error) {
+        setStatus('error');
+        trackEvent('form_error', { form: 'contact', error: result.error });
+        return;
+      }
+
+      setStatus('success');
+      trackEvent('form_submit', { form: 'contact' });
+      
+      // Redireciona para o WhatsApp após 1 segundo como prometido
+      setTimeout(() => {
+        const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Gostaria de falar sobre um projeto.`);
+        window.open(`https://wa.me/${siteConfig.contact.whatsapp.number}?text=${text}`, '_blank');
+      }, 1000);
+
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -85,8 +115,17 @@ export default function ContactForm() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="bg-[#121212]/80 backdrop-blur-xl p-8 md:p-12 lg:p-16 rounded-[2rem] md:rounded-[3rem] border border-white/5 shadow-2xl"
+            className="bg-[#121212]/80 backdrop-blur-xl p-8 md:p-12 lg:p-16 rounded-[2rem] md:rounded-[3rem] border border-white/5 shadow-2xl relative overflow-hidden"
           >
+            {status === 'success' ? (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#121212] p-8 text-center animate-in fade-in duration-500">
+                <CheckCircle2 className="w-20 h-20 text-green-500 mb-6" />
+                <h3 className="text-3xl font-bold text-white mb-4">Tudo Certo!</h3>
+                <p className="text-zinc-400 text-lg">
+                  Sua solicitação foi enviada. Redirecionando para o nosso WhatsApp...
+                </p>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               
               {/* Input Group */}
@@ -96,8 +135,22 @@ export default function ContactForm() {
                   name="name"
                   id="name"
                   required
-                  placeholder="Seu nome ou da empresa"
+                  placeholder="Seu nome completo"
                   value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
+                />
+              </div>
+
+              {/* Input Group */}
+              <div className="relative group">
+                <input 
+                  type="tel" 
+                  name="whatsapp"
+                  id="whatsapp"
+                  required
+                  placeholder="Seu WhatsApp (com DDD)"
+                  value={formData.whatsapp}
                   onChange={handleChange}
                   className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
                 />
@@ -109,66 +162,49 @@ export default function ContactForm() {
                   type="email" 
                   name="email"
                   id="email"
-                  required
-                  placeholder="E-mail profissional"
+                  placeholder="E-mail profissional (opcional)"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
                 />
               </div>
 
-              {/* Input Group */}
-              <div className="relative group">
-                <input 
-                  type="text" 
-                  name="company"
-                  id="company"
-                  placeholder="Empresa / Projeto"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder-zinc-600 focus:outline-none focus:border-[#2563eb] transition-colors peer"
-                />
-              </div>
-
-              {/* Input Group */}
-              <div className="relative group">
-                <textarea 
-                  name="message"
-                  id="message"
-                  required
-                  rows={1}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:outline-none focus:border-[#2563eb] transition-colors resize-none peer min-h-[60px]"
-                  placeholder=" "
-                />
-                <label 
-                  htmlFor="message" 
-                  className="absolute left-0 top-4 text-zinc-600 text-xl cursor-text transition-all peer-focus:-top-4 peer-focus:text-sm peer-focus:text-[#2563eb] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-sm"
-                >
-                  Conte-nos um pouco sobre o seu projeto...
-                </label>
-              </div>
-
               {/* Submit Button */}
               <button 
                 type="submit"
-                className="group relative w-full py-5 bg-white text-black font-bold text-lg rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                disabled={status === 'loading'}
+                className="group relative w-full py-5 bg-white text-black font-bold text-lg rounded-full overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100"
               >
                 {/* Button Hover Effect */}
                 <div className="absolute inset-0 bg-[#2563eb] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                 
                 <span className="relative z-10 flex items-center justify-center gap-3 group-hover:text-white transition-colors duration-500">
-                  Enviar Solicitação
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {status === 'loading' ? (
+                    <>
+                      Enviando...
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Falar com Especialista
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </span>
               </button>
 
+              {status === 'error' && (
+                <p className="text-center text-red-500 text-sm mt-[-10px]">
+                  Ocorreu um erro ao enviar. Tente diretamente pelo WhatsApp.
+                </p>
+              )}
+
               <p className="text-center text-sm text-zinc-500 font-light mt-[-10px]">
-                Nossa equipe entrará em contato em até 24h úteis.
+                Seu projeto começará no momento em que você clicar.
               </p>
 
             </form>
+            )}
           </motion.div>
 
         </div>

@@ -3,11 +3,11 @@ import TextType from './ui/TextType';
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="home" className="min-h-[100svh] relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-24 pb-12">
       <div className="absolute inset-0 w-full h-full z-10">
         <FloatingLines 
           enabledWaves={['top', 'middle', 'bottom']} 
-          lineCount={[4, 4, 4]} 
+          lineCount={[3, 3, 3]} 
           lineDistance={[8, 6, 4]} 
           bendRadius={5.0} 
           bendStrength={-0.5} 

@@ -39,19 +39,7 @@ export default function Footer() {
           </div>
           
           {/* Empty Space for Grid alignment */}
-          <div className="hidden lg:block lg:col-span-1"></div>
-          
-          {/* Services Col (Takes 3 columns) */}
-          <div className="lg:col-span-3 flex flex-col items-center md:items-start">
-            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-8 opacity-50">Expertise</h4>
-            <ul className="space-y-4 flex flex-col items-center md:items-start">
-              <FooterLink href="#">Sistemas Web / SaaS</FooterLink>
-              <FooterLink href="#">E-commerces High-End</FooterLink>
-              <FooterLink href="#">Landing Pages Imersivas</FooterLink>
-              <FooterLink href="#">UX / UI Design</FooterLink>
-              <FooterLink href="#">Consultoria Técnica</FooterLink>
-            </ul>
-          </div>
+          <div className="hidden lg:block lg:col-span-4"></div>
           
           {/* Navigation Col (Takes 3 columns) */}
           <div className="lg:col-span-3 flex flex-col items-center md:items-start">
@@ -60,7 +48,7 @@ export default function Footer() {
               <FooterLink href="#home">Home</FooterLink>
               <FooterLink href="#services">Nossas Soluções</FooterLink>
               <FooterLink href="#portfolio">Projetos Recentes</FooterLink>
-              <FooterLink href="#about">Sobre a Boutique</FooterLink>
+              <FooterLink href="#process">Como Trabalhamos</FooterLink>
               <FooterLink href="#faq">Dúvidas Frequentes</FooterLink>
             </ul>
           </div>

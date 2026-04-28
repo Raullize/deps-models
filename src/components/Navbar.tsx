@@ -1,32 +1,20 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { TbWorld } from 'react-icons/tb';
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Serviços' },
-  { href: '#portfolio', label: 'Portfólio' },
-  { href: '#about', label: 'Sobre Nós' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contato' },
+  { href: '#services', label: 'Soluções' },
+  { href: '#portfolio', label: 'Projetos' },
+  { href: '#process', label: 'Processo' },
+  { href: '#faq', label: 'Dúvidas' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('PT');
   const [hoveredLink, setHoveredLink] = useState<string>('#home');
-  const [isLangDropdownOpen, setLangDropdownOpen] = useState(false);
-  const languages = ['PT', 'EN', 'ES'];
-  const langDropdownRef = useRef<HTMLDivElement>(null);
-
-  const selectLanguage = (lang: string) => {
-    setCurrentLanguage(lang);
-    setLangDropdownOpen(false);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,19 +24,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
-        setLangDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -63,6 +38,7 @@ export default function Navbar() {
               alt="DEPS Models Logo"
               width={100}
               height={100}
+              priority
               className=""
             />
           </Link>
@@ -94,33 +70,14 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Seletor de Idioma Dropdown */}
+          {/* CTA Button */}
           <div className="absolute right-0 flex items-center">
-            <div className="relative" ref={langDropdownRef}>
-              <button
-                onClick={() => setLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer"
-                aria-label="Mudar idioma"
-              >
-                <TbWorld className="w-5 h-5" />
-                <span className="text-sm font-medium transition-all duration-300">
-                  {currentLanguage}
-                </span>
-              </button>
-              {isLangDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-full bg-gray-800 rounded-lg shadow-lg p-1">
-                  {languages.map(lang => (
-                    <button
-                      key={lang}
-                      onClick={() => selectLanguage(lang)}
-                      className={`w-full flex justify-center items-center p-2 text-sm rounded-md ${currentLanguage === lang ? 'text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}
-                    >
-                      {lang}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link
+              href="#contact"
+              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-2.5 rounded-full font-medium transition-colors duration-200"
+            >
+              Falar com Especialista
+            </Link>
           </div>
         </div>
       </div>

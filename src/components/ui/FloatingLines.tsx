@@ -139,7 +139,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   }
   
   if (enableBottom) {
-    for (int i = 0; i < bottomLineCount; ++i) {
+    for (int i = 0; i < 10; ++i) {
+      if (i >= bottomLineCount) break;
       float fi = float(i);
       float t = fi / max(float(bottomLineCount - 1), 1.0);
       vec3 lineCol = getLineColor(t, b);
@@ -157,7 +158,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   }
 
   if (enableMiddle) {
-    for (int i = 0; i < middleLineCount; ++i) {
+    for (int i = 0; i < 10; ++i) {
+      if (i >= middleLineCount) break;
       float fi = float(i);
       float t = fi / max(float(middleLineCount - 1), 1.0);
       vec3 lineCol = getLineColor(t, b);
@@ -175,7 +177,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   }
 
   if (enableTop) {
-    for (int i = 0; i < topLineCount; ++i) {
+    for (int i = 0; i < 10; ++i) {
+      if (i >= topLineCount) break;
       float fi = float(i);
       float t = fi / max(float(topLineCount - 1), 1.0);
       vec3 lineCol = getLineColor(t, b);
@@ -315,11 +318,25 @@ export default function FloatingLines({
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     camera.position.z = 1;
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    let renderer: WebGLRenderer;
+    try {
+      renderer = new WebGLRenderer({ 
+        antialias: false, 
+        alpha: false,
+        powerPreference: "low-power" 
+      });
+    } catch (e) {
+      console.warn("WebGL não suportado ou contexto bloqueado. Exibindo fallback:", e);
+      container.style.background = "radial-gradient(ellipse at center, #0A2A5D 0%, #000000 70%)";
+      return;
+    }
+    
+    // Force pixel ratio to 1 for better performance on all devices
+    renderer.setPixelRatio(1);
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
     container.appendChild(renderer.domElement);
+
 
     const uniforms = {
       iTime: { value: 0 },
@@ -442,29 +459,47 @@ export default function FloatingLines({
     }
 
     let raf = 0;
+    let isVisible = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+        });
+      },
+      { threshold: 0 }
+    );
+
+    if (container) {
+      observer.observe(container);
+    }
+
     const renderLoop = () => {
-      uniforms.iTime.value = clock.getElapsedTime();
+      if (isVisible) {
+        uniforms.iTime.value = clock.getElapsedTime();
 
-      if (interactive) {
-        currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
-        uniforms.iMouse.value.copy(currentMouseRef.current);
+        if (interactive) {
+          currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
+          uniforms.iMouse.value.copy(currentMouseRef.current);
 
-        currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
-        uniforms.bendInfluence.value = currentInfluenceRef.current;
+          currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
+          uniforms.bendInfluence.value = currentInfluenceRef.current;
+        }
+
+        if (parallax) {
+          currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
+          uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
+        }
+
+        renderer.render(scene, camera);
       }
-
-      if (parallax) {
-        currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
-        uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
-      }
-
-      renderer.render(scene, camera);
       raf = requestAnimationFrame(renderLoop);
     };
     renderLoop();
 
     return () => {
       cancelAnimationFrame(raf);
+      observer.disconnect();
       if (ro && container) {
         ro.disconnect();
       }
@@ -476,6 +511,7 @@ export default function FloatingLines({
 
       geometry.dispose();
       material.dispose();
+      renderer.forceContextLoss(); // Força a liberação da memória do contexto webgl
       renderer.dispose();
       if (renderer.domElement.parentElement) {
         renderer.domElement.parentElement.removeChild(renderer.domElement);
