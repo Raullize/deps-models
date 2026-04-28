@@ -104,7 +104,7 @@ export default function Portfolio() {
 
 function ProjectCard({ project, i }: { project: typeof projects[0], i: number }) {
   return (
-    <div className="flex flex-col bg-[#121212] rounded-[2rem] border border-white/5 overflow-hidden group hover:border-[#2563eb]/30 transition-all duration-500 shadow-2xl shadow-black/50">
+    <div className="flex flex-col bg-[#121212] rounded-4xl border border-white/5 overflow-hidden group hover:border-[#2563eb]/30 transition-all duration-500 shadow-2xl shadow-black/50">
       {/* Image Container - Proporção Natural para não cortar */}
       <a 
         href={project.link} 
@@ -123,9 +123,9 @@ function ProjectCard({ project, i }: { project: typeof projects[0], i: number })
         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
         
         {/* Degradê para fundir a imagem suavemente com o bloco de texto */}
-        <div className={`absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none`} />
+        <div className={`absolute inset-0 bg-linear-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none`} />
         
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.theme} opacity-10 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none`} />
+        <div className={`absolute inset-0 bg-linear-to-br ${project.theme} opacity-10 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none`} />
       </a>
 
       {/* Content Container - Dividido em 2 colunas no desktop */}
@@ -153,7 +153,7 @@ function ProjectCard({ project, i }: { project: typeof projects[0], i: number })
           <div className="grid grid-cols-2 gap-4 sm:gap-6">
             {project.results.map((result, idx) => (
               <div key={idx} className="flex flex-col gap-1 min-w-0">
-                <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-white break-words leading-tight">{result.metric}</p>
+                <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-white text-wrap leading-tight">{result.metric}</p>
                 <p className="text-sm font-medium text-zinc-500 leading-snug mt-1">{result.label}</p>
               </div>
             ))}

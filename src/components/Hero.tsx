@@ -3,7 +3,7 @@ import TextType from './ui/TextType';
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-[100svh] relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-24 pb-12">
+    <section id="home" className="min-h-svh relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-24 pb-12">
       <div className="absolute inset-0 w-full h-full z-10">
         <FloatingLines 
           enabledWaves={['top', 'middle', 'bottom']} 
@@ -48,7 +48,7 @@ export default function Hero() {
             className="group relative w-full sm:w-auto overflow-hidden bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] flex items-center justify-center"
           >
             <span className="relative z-10">Quero organizar minha empresa</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           
           <a 
