@@ -12,41 +12,53 @@ export default function Footer() {
       <div className="absolute top-0 right-0 w-1/3 h-64 bg-[#2563eb] rounded-full blur-[150px] opacity-[0.03] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-end text-center md:text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-start text-center md:text-left">
           
           {/* Brand Col (Takes 5 columns) */}
-          <div className="lg:col-span-5 flex flex-col justify-between items-center md:items-start">
-            <div className="flex flex-col items-center md:items-start">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight max-w-sm">
-                Não criamos apenas sites.<br/>Construímos <span className="text-[#2563eb]">ecossistemas digitais</span>.
-              </h3>
-            </div>
+          <div className="lg:col-span-5 flex flex-col items-center md:items-start">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
+              Transformação Digital e Inovação
+            </h3>
+            <p className="text-zinc-400 text-sm md:text-base font-light mb-8 max-w-md">
+              Não criamos apenas sites. Construímos ecossistemas digitais completos para modernizar sua empresa, otimizar processos e impulsionar resultados no ambiente online.
+            </p>
             
-            <div className="mt-8 lg:mt-0 flex justify-center md:justify-start w-full">
-              <a 
-                href="https://wa.me/5551999832724?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20DEPS%20Models." 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center md:justify-start gap-2 text-xl font-light text-zinc-300 hover:text-white transition-colors group"
-              >
-                Falar no WhatsApp
-                <ArrowUpRight className="w-5 h-5 text-[#2563eb] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </a>
-            </div>
+            <a 
+              href="https://wa.me/5551999832724?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20DEPS%20Models." 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center justify-center md:justify-start gap-2 text-lg font-light text-zinc-300 hover:text-white transition-colors group"
+            >
+              Falar no WhatsApp
+              <ArrowUpRight className="w-5 h-5 text-[#2563eb] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </a>
           </div>
           
           {/* Empty Space for Grid alignment */}
-          <div className="hidden lg:block lg:col-span-4"></div>
+          <div className="hidden lg:block lg:col-span-1"></div>
           
           {/* Navigation Col (Takes 3 columns) */}
           <div className="lg:col-span-3 flex flex-col items-center md:items-start">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-8 opacity-50">Navegação</h4>
             <ul className="space-y-4 flex flex-col items-center md:items-start">
-              <FooterLink href="#home">Home</FooterLink>
-              <FooterLink href="#services">Nossas Soluções</FooterLink>
-              <FooterLink href="#portfolio">Projetos Recentes</FooterLink>
-              <FooterLink href="#process">Como Trabalhamos</FooterLink>
-              <FooterLink href="#faq">Dúvidas Frequentes</FooterLink>
+              <FooterLink href="/#home">Home</FooterLink>
+              <FooterLink href="/#services">Nossas Soluções</FooterLink>
+              <FooterLink href="/#portfolio">Projetos Recentes</FooterLink>
+              <FooterLink href="/#process">Como Trabalhamos</FooterLink>
+              <FooterLink href="/#faq">Dúvidas Frequentes</FooterLink>
+              <FooterLink href="/#contact">Iniciar Projeto</FooterLink>
+            </ul>
+          </div>
+
+          {/* Portfolio Col (Takes 3 columns) */}
+          <div className="lg:col-span-3 flex flex-col items-center md:items-start">
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-8 opacity-50">Portfólio</h4>
+            <ul className="space-y-4 flex flex-col items-center md:items-start">
+              <FooterLink href="https://wa.me/5551999832724?text=Olá,%20tenho%20interesse%20em%20uma%20demo%20do%20sistema%20de%20Gestão%20e%20Financeiro." external>Consultoria de TI Web</FooterLink>
+              <FooterLink href="https://armazem-girassol.vercel.app/" external>Armazém Girassol</FooterLink>
+              <FooterLink href="https://colabplus-xi.vercel.app/" external>Colab+ | RH</FooterLink>
+              <FooterLink href="https://octo-hub-site.vercel.app/" external>Octohub Agência</FooterLink>
+              <FooterLink href="https://psicologakarinestrapazon.com/" external>Psicóloga Karine Strapazon</FooterLink>
             </ul>
           </div>
           
@@ -70,13 +82,13 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {/* Legal Links inline */}
               <div className="flex flex-wrap justify-center xl:justify-start items-center gap-x-3 gap-y-2 text-sm font-medium text-zinc-300">
-                <Link href="/termos-de-uso" className="hover:text-white transition-colors">Termos de Uso</Link>
+                <Link href="/#home" className="hover:text-white transition-colors">Termos de Uso</Link>
                 <span className="text-zinc-600">|</span>
-                <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">Política de Privacidade</Link>
+                <Link href="/#home" className="hover:text-white transition-colors">Política de Privacidade</Link>
                 <span className="text-zinc-600">|</span>
-                <Link href="/marcas" className="hover:text-white transition-colors">Marcas</Link>
+                <Link href="/#home" className="hover:text-white transition-colors">Marcas</Link>
                 <span className="text-zinc-600">|</span>
-                <Link href="/licencas" className="hover:text-white transition-colors">Contratos de Licença</Link>
+                <Link href="/#home" className="hover:text-white transition-colors">Contratos de Licença</Link>
               </div>
 
               {/* Copyright */}
@@ -124,7 +136,23 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
   );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({ href, external, children }: { href: string; external?: boolean; children: React.ReactNode }) {
+  if (external) {
+    return (
+      <li>
+        <a 
+          href={href} 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-zinc-400 hover:text-white transition-colors duration-300 text-base font-light flex items-center group"
+        >
+          <span className="w-0 h-[1px] bg-[#2563eb] mr-0 group-hover:w-3 group-hover:mr-3 transition-all duration-300"></span>
+          {children}
+        </a>
+      </li>
+    );
+  }
+
   return (
     <li>
       <Link 

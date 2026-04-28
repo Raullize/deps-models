@@ -12,7 +12,7 @@ const navLinks = [
   { href: '/#portfolio', label: 'Projetos' },
   { href: '/#process', label: 'Processo' },
   { href: '/#faq', label: 'Dúvidas' },
-  { href: '/#contact', label: 'Contato' },
+  { href: '/#contact', label: 'Iniciar Projeto' },
 ];
 
 export default function Navbar() {
